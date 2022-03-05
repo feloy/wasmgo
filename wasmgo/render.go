@@ -9,10 +9,9 @@ type Component interface {
 	Render() dom.Element
 }
 
-func Render(jsclient js.Client, component Component) {
+func Render(jsclient js.Client, element dom.Element) {
 	document := jsclient.GetDocument()
 	body := jsclient.GetBody(document)
-	element := component.Render()
 	jsTag := element.Render(document)
 	body.Call("appendChild", jsTag)
 }

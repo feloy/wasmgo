@@ -1,19 +1,18 @@
 package main
 
 import (
-	"github.com/feloy/wasmgo/wasmgo"
+	"syscall/js"
+
 	"github.com/feloy/wasmgo/wasmgo/dom"
 )
 
 type PageView struct{}
 
-var _ wasmgo.Component = (*PageView)(nil)
+var _ dom.Element = (*PageView)(nil)
 
-func (o PageView) Render() dom.Element {
+func (o PageView) Render(document js.Value) js.Value {
 
-	titleLink := dom.NewHyperlink("link", dom.HyperlinkOptions{
-		Destination: "https://webassembly.org",
-	}).WithId("hyperlink1")
+	titleLink := LinkView{}
 
 	return dom.NewDiv().
 		AddChild(dom.NewHeader1("").WithId("title1").WithClass("title-level-1").WithClass("other-class").
@@ -27,5 +26,5 @@ func (o PageView) Render() dom.Element {
 			AddChild(dom.NewHyperlink("Web Assembly", dom.HyperlinkOptions{
 				Destination: "https://webassembly.org/",
 				Relation:    dom.HyperlinkRelationExternal,
-			})))
+			}))).Render(document)
 }
