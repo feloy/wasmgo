@@ -21,10 +21,11 @@ type HyperlinkOptions struct {
 	Relation    string
 }
 
-func NewHyperlink(inner string, options HyperlinkOptions) *Tag {
+// NewHyperlink returns a new "<a>" tag with text content
+func NewHyperlink(text string, options HyperlinkOptions) *Tag {
 	return &Tag{
 		Name:      "a",
-		InnerHTML: inner,
+		InnerHTML: text,
 		Attributes: map[string]string{
 			"href": options.Destination,
 			"rel":  options.Relation,
