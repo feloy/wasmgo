@@ -1,10 +1,5 @@
 package dom
 
-import (
-	"strings"
-	"syscall/js"
-)
-
 type Tag struct {
 	Name       string
 	InnerHTML  string
@@ -36,23 +31,6 @@ func (o *Tag) WithClass(class string) *Tag {
 func (o *Tag) AddChild(child Element) *Tag {
 	o.Children = append(o.Children, child)
 	return o
-}
-
-func (tag *Tag) Render(document js.Value) js.Value {
-	jsTag := document.Call("createElement", tag.Name)
-	jsTag.Set("innerHTML", tag.InnerHTML)
-	for attr, value := range tag.Attributes {
-		jsTag.Set(attr, value)
-	}
-	if len(tag.Classes) > 0 {
-		className := strings.Join(tag.Classes, " ")
-		jsTag.Set("className", className)
-	}
-	for _, child := range tag.Children {
-		jsChild := child.Render(document)
-		jsTag.Call("appendChild", jsChild)
-	}
-	return jsTag
 }
 
 // NewDiv returns a new empty "<div>" tag

@@ -1,0 +1,11 @@
+{
+    "go.toolsEnvVars": {
+        "GOARCH":"amd64",
+        "GOOS":"linux",
+    },
+    "go.testEnvVars": {
+        "GOARCH":"amd64",
+        "GOOS":"linux",
+    },
+    "go.installDependenciesWhenBuilding": false,
+}

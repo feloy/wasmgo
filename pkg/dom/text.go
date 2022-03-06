@@ -1,7 +1,5 @@
 package dom
 
-import "syscall/js"
-
 type TextNode struct {
 	Text string
 }
@@ -11,8 +9,4 @@ func NewText(text string) *TextNode {
 	return &TextNode{
 		Text: text,
 	}
-}
-
-func (o *TextNode) Render(document js.Value) js.Value {
-	return document.Call("createTextNode", o.Text)
 }

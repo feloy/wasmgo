@@ -1,8 +1,8 @@
 package main
 
 import (
-	"github.com/feloy/wasmgo/wasmgo"
-	"github.com/feloy/wasmgo/wasmgo/js"
+	wasmgo "github.com/feloy/wasmgo/pkg"
+	"github.com/feloy/wasmgo/pkg/js"
 )
 
 func main() {
