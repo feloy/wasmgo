@@ -4,6 +4,8 @@ import (
 	"syscall/js"
 
 	"github.com/feloy/wasmgo/pkg/dom"
+	"github.com/feloy/wasmgo/pkg/dom/attributes"
+	"github.com/feloy/wasmgo/pkg/dom/elements"
 )
 
 type PageView struct{}
@@ -14,17 +16,17 @@ func (o PageView) Render(document js.Value) js.Value {
 
 	titleLink := LinkView{}
 
-	return dom.NewDiv().
-		AddChild(dom.NewHeader1("").WithId("title1").WithClass("title-level-1").WithClass("other-class").
-			AddChild(dom.NewText("Title 1 (")).
+	return elements.NewDiv().
+		AddChild(elements.NewHeader1("").WithId("title1").WithClass("title-level-1").WithClass("other-class").
+			AddChild(elements.NewText("Title 1 (")).
 			AddChild(titleLink).
-			AddChild(dom.NewText(")"))).
-		AddChild(dom.NewHeader2("Title 1.1")).
-		AddChild(dom.NewParagraph("some text: bla bla")).
-		AddChild(dom.NewHeader2("Title 1.2")).
-		AddChild(dom.NewParagraph("").
-			AddChild(dom.NewHyperlink("Web Assembly", dom.HyperlinkOptions{
+			AddChild(elements.NewText(")"))).
+		AddChild(elements.NewHeader2("Title 1.1")).
+		AddChild(elements.NewParagraph("some text: bla bla")).
+		AddChild(elements.NewHeader2("Title 1.2")).
+		AddChild(elements.NewParagraph("").
+			AddChild(elements.NewHyperlink("Web Assembly", elements.HyperlinkOptions{
 				Destination: "https://webassembly.org/",
-				Relation:    dom.HyperlinkRelationExternal,
+				Relation:    attributes.RelationExternal,
 			}))).Render(document)
 }

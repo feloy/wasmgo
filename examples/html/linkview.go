@@ -4,6 +4,7 @@ import (
 	"io"
 
 	"github.com/feloy/wasmgo/pkg/dom"
+	"github.com/feloy/wasmgo/pkg/dom/elements"
 )
 
 type LinkView struct{}
@@ -11,7 +12,7 @@ type LinkView struct{}
 var _ dom.Element = (*LinkView)(nil)
 
 func (o LinkView) Render(buffer io.Writer) {
-	dom.NewHyperlink("link", dom.HyperlinkOptions{
+	elements.NewHyperlink("link", elements.HyperlinkOptions{
 		Destination: "https://webassembly.org/",
 	}).WithId("hyperlink1").Render(buffer)
 }

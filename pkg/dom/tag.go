@@ -32,34 +32,3 @@ func (o *Tag) AddChild(child Element) *Tag {
 	o.Children = append(o.Children, child)
 	return o
 }
-
-// NewDiv returns a new empty "<div>" tag
-func NewDiv() *Tag {
-	return &Tag{
-		Name: "div",
-	}
-}
-
-// NewHeader1 returns a new "<h1>" tag with title content
-func NewHeader1(title string) *Tag {
-	return &Tag{
-		Name:      "h1",
-		InnerHTML: title,
-	}
-}
-
-// NewHeader2 returns a new "<h2>" tag with title content
-func NewHeader2(title string) *Tag {
-	return &Tag{
-		Name:      "h2",
-		InnerHTML: title,
-	}
-}
-
-// NewParagraph returns a new "<p>" tag with text content
-func NewParagraph(text string) *Tag {
-	return &Tag{
-		Name:      "p",
-		InnerHTML: text,
-	}
-}

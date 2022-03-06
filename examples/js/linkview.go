@@ -4,6 +4,7 @@ import (
 	"syscall/js"
 
 	"github.com/feloy/wasmgo/pkg/dom"
+	"github.com/feloy/wasmgo/pkg/dom/elements"
 )
 
 type LinkView struct{}
@@ -11,7 +12,7 @@ type LinkView struct{}
 var _ dom.Element = (*LinkView)(nil)
 
 func (o LinkView) Render(document js.Value) js.Value {
-	return dom.NewHyperlink("link", dom.HyperlinkOptions{
+	return elements.NewHyperlink("link", elements.HyperlinkOptions{
 		Destination: "https://webassembly.org/",
 	}).WithId("hyperlink1").Render(document)
 }
