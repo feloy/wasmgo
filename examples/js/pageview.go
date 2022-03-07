@@ -1,6 +1,7 @@
 package main
 
 import (
+	"fmt"
 	"syscall/js"
 
 	"github.com/feloy/wasmgo/pkg/dom"
@@ -14,6 +15,10 @@ var _ dom.Element = (*PageView)(nil)
 
 func (o PageView) Render(document js.Value) js.Value {
 
+	buttonHandler := func() {
+		fmt.Println("clicked!")
+	}
+
 	titleLink := LinkView{}
 
 	return elements.NewDiv().
@@ -23,6 +28,7 @@ func (o PageView) Render(document js.Value) js.Value {
 			AddChild(elements.NewText(")"))).
 		AddChild(elements.NewHeader2("Title 1.1")).
 		AddChild(elements.NewParagraph("some text: bla bla")).
+		AddChild(elements.NewButton("click here").AddOnclickHandler(buttonHandler)).
 		AddChild(elements.NewHeader2("Title 1.2")).
 		AddChild(elements.NewParagraph("").
 			AddChild(elements.NewHyperlink("Web Assembly", elements.HyperlinkOptions{
