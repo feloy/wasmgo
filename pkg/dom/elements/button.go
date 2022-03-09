@@ -2,9 +2,9 @@ package elements
 
 import "github.com/feloy/wasmgo/pkg/dom"
 
-func NewButton(title string) *dom.Tag {
+func NewButton(inner string) *dom.Tag {
 	return &dom.Tag{
+		InnerHTML: inner,
 		Name:      "button",
-		InnerHTML: title,
 	}
 }

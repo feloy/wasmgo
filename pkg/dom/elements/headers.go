@@ -2,18 +2,39 @@ package elements
 
 import "github.com/feloy/wasmgo/pkg/dom"
 
-// NewHeader1 returns a new "<h1>" tag with title content
-func NewHeader1(title string) *dom.Tag {
+func NewHeader1(inner string) *dom.Tag {
 	return &dom.Tag{
+		InnerHTML: inner,
 		Name:      "h1",
-		InnerHTML: title,
 	}
 }
-
-// NewHeader2 returns a new "<h2>" tag with title content
-func NewHeader2(title string) *dom.Tag {
+func NewHeader2(inner string) *dom.Tag {
 	return &dom.Tag{
+		InnerHTML: inner,
 		Name:      "h2",
-		InnerHTML: title,
+	}
+}
+func NewHeader3(inner string) *dom.Tag {
+	return &dom.Tag{
+		InnerHTML: inner,
+		Name:      "h3",
+	}
+}
+func NewHeader4(inner string) *dom.Tag {
+	return &dom.Tag{
+		InnerHTML: inner,
+		Name:      "h4",
+	}
+}
+func NewHeader5(inner string) *dom.Tag {
+	return &dom.Tag{
+		InnerHTML: inner,
+		Name:      "h5",
+	}
+}
+func NewHeader6(inner string) *dom.Tag {
+	return &dom.Tag{
+		InnerHTML: inner,
+		Name:      "h6",
 	}
 }
