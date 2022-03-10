@@ -15,8 +15,8 @@ func (tag *Tag) Render(document js.Value) js.Value {
 			jsTag.Set(attr, value)
 		}
 	}
-	if len(tag.Classes) > 0 {
-		className := strings.Join(tag.Classes, " ")
+	if len(tag.SSLAttributes["class"]) > 0 {
+		className := strings.Join(tag.SSLAttributes["class"], " ")
 		jsTag.Set("className", className)
 	}
 	for _, child := range tag.Children {

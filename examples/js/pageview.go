@@ -22,7 +22,7 @@ func (o PageView) Render(document js.Value) js.Value {
 	titleLink := LinkView{}
 
 	return elements.NewDiv().
-		AddChild(elements.NewHeader1("").WithId("title1").WithClass("title-level-1").WithClass("other-class").
+		AddChild(elements.NewHeader1("").WithId("title1").AppendClass("title-level-1").AppendClass("other-class").
 			AddChild(elements.NewText("Title 1 (")).
 			AddChild(titleLink).
 			AddChild(elements.NewText(")"))).
