@@ -16,9 +16,17 @@ func (tag *Tag) Render(buffer io.Writer) {
 			fmt.Fprintf(buffer, ` %s="%s"`, attr, html.EscapeString(value))
 		}
 	}
-	if len(tag.Classes) > 0 {
-		className := strings.Join(tag.Classes, " ")
-		fmt.Fprintf(buffer, ` class="%s"`, className)
+	for attr, value := range tag.BoolAttributes {
+		if value {
+			fmt.Fprintf(buffer, ` %s`, attr)
+		}
+	}
+	for attr, value := range tag.IntAttributes {
+		fmt.Fprintf(buffer, ` %s="%d"`, attr, value)
+	}
+	for attr, values := range tag.SSLAttributes {
+		list := strings.Join(values, " ")
+		fmt.Fprintf(buffer, ` %s="%s"`, attr, list)
 	}
 	fmt.Fprintf(buffer, ">%s", html.EscapeString(tag.InnerHTML))
 	for _, child := range tag.Children {

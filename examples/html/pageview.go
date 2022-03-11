@@ -16,12 +16,12 @@ func (o PageView) Render(buffer io.Writer) {
 	titleLink := LinkView{}
 
 	elements.NewDiv().
-		AddChild(elements.NewHeader1("").WithId("title1").WithClass("title-level-1").WithClass("other-class").
+		AddChild(elements.NewHeader1("").WithId("title1").AppendClass("title-level-1").PrependClass("other-class").
 			AddChild(elements.NewText("Title 1 (")).
 			AddChild(titleLink).
 			AddChild(elements.NewText(")"))).
-		AddChild(elements.NewHeader2("Title 1.1")).
-		AddChild(elements.NewParagraph("some text: bla bla")).
+		AddChild(elements.NewHeader2("Title 1.1").WithAutofocus(false).WithTabindex(0)).
+		AddChild(elements.NewParagraph("some text: bla bla").WithTabindex(1)).
 		AddChild(elements.NewHeader2("Title 1.2")).
 		AddChild(elements.NewParagraph("").
 			AddChild(elements.NewHyperlink("Web Assembly", elements.HyperlinkOptions{

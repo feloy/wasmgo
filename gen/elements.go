@@ -20,9 +20,11 @@ type element struct {
 }
 
 type attribute struct {
-	name string
-	key  string
-	typ  string
+	name     string
+	property string
+	key      string
+	typ      string
+	values   []string
 }
 
 var categories = []category{

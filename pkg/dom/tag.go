@@ -3,12 +3,14 @@ package dom
 type EventHandler func()
 
 type Tag struct {
-	Name          string
-	InnerHTML     string
-	Attributes    map[string]string
-	SSLAttributes map[string][]string
-	Children      []Element
-	Handlers      map[string][]EventHandler
+	Name           string
+	InnerHTML      string
+	Attributes     map[string]string
+	BoolAttributes map[string]bool
+	IntAttributes  map[string]int
+	SSLAttributes  map[string][]string
+	Children       []Element
+	Handlers       map[string][]EventHandler
 }
 
 func (o *Tag) appendAttribute(key, value string) {
@@ -16,6 +18,20 @@ func (o *Tag) appendAttribute(key, value string) {
 		o.Attributes = make(map[string]string)
 	}
 	o.Attributes[key] = value
+}
+
+func (o *Tag) appendBoolAttribute(key string, value bool) {
+	if o.BoolAttributes == nil {
+		o.BoolAttributes = make(map[string]bool)
+	}
+	o.BoolAttributes[key] = value
+}
+
+func (o *Tag) appendIntAttribute(key string, value int) {
+	if o.IntAttributes == nil {
+		o.IntAttributes = make(map[string]int)
+	}
+	o.IntAttributes[key] = value
 }
 
 func (o *Tag) appendSSLAttribute(key, value string) {

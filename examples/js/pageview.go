@@ -28,7 +28,7 @@ func (o PageView) Render(document js.Value) js.Value {
 			AddChild(elements.NewText(")"))).
 		AddChild(elements.NewHeader2("Title 1.1")).
 		AddChild(elements.NewParagraph("some text: bla bla")).
-		AddChild(elements.NewButton("click here").AddOnclickHandler(buttonHandler)).
+		AddChild(elements.NewButton("click here").AppendAccesskey("k").AddOnclickHandler(buttonHandler)).
 		AddChild(elements.NewHeader2("Title 1.2")).
 		AddChild(elements.NewParagraph("").
 			AddChild(elements.NewHyperlink("Web Assembly", elements.HyperlinkOptions{
