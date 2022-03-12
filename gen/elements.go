@@ -363,7 +363,7 @@ var categories = []category{
 				name: "input",
 			},
 			{
-				name: "button",
+				name:     "button",
 				hasInner: true,
 			},
 			{
@@ -435,6 +435,7 @@ func generateCategories(subpath string) {
 	for _, category := range categories {
 		filename := filepath.Join(subpath, "elements", category.name+".go")
 		f := jen.NewFile("elements")
+		f.HeaderComment(GENERATED)
 		f.ImportName("github.com/feloy/wasmgo/pkg/dom", "dom")
 
 		for _, element := range category.elements {

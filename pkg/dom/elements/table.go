@@ -1,3 +1,5 @@
+// This file is generated. Please do not edit
+
 package elements
 
 import "github.com/feloy/wasmgo/pkg/dom"

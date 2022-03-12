@@ -1,3 +1,5 @@
+// This file is generated. Please do not edit
+
 package dom
 
 func (o *Tag) WithAutocapitalize(autocapitalize string) *Tag {

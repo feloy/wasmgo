@@ -323,15 +323,22 @@ translate			ENUM(yes/no)
 
 func generateAttributes(subpath string) {
 	filename := filepath.Join(subpath, "common_attributes.go")
-	filename_const := filepath.Join(subpath, "common_attributes_const.go")
-	filename_js := filepath.Join(subpath, "common_attributes_js.go")
-	filename_other := filepath.Join(subpath, "common_attributes_other.go")
 	f := jen.NewFile("dom")
+	f.HeaderComment(GENERATED)
+
+	filename_const := filepath.Join(subpath, "common_attributes_const.go")
 	f_const := jen.NewFile("dom")
+	f_const.HeaderComment(GENERATED)
+
+	filename_js := filepath.Join(subpath, "common_attributes_js.go")
 	f_js := jen.NewFile("dom")
 	f_js.HeaderComment("+build js")
+	f_js.HeaderComment(GENERATED)
+
+	filename_other := filepath.Join(subpath, "common_attributes_other.go")
 	f_other := jen.NewFile("dom")
 	f_other.HeaderComment("+build !js")
+	f_other.HeaderComment(GENERATED)
 
 	for _, attribute := range commonAttributes {
 		if attribute.key == attribute.property {
