@@ -14,7 +14,6 @@ type category struct {
 
 type element struct {
 	name       string
-	tag        string
 	hasInner   bool
 	attributes []attribute
 }
@@ -29,56 +28,141 @@ type attribute struct {
 
 var categories = []category{
 	{
-		name: "button",
+		name: "metadata",
 		elements: []element{
 			{
-				name:     "button",
-				tag:      "button",
+				name: "head",
+			},
+			{
+				name: "title",
+			},
+			{
+				name: "base",
+			},
+			{
+				name: "link",
+			},
+			{
+				name: "meta",
+			},
+			{
+				name: "style",
+			},
+		},
+	},
+	{
+		name: "section",
+		elements: []element{
+			{
+				name: "body",
+			},
+			{
+				name: "article",
+			},
+			{
+				name: "section",
+			},
+			{
+				name: "nav",
+			},
+			{
+				name: "aside",
+			},
+			{
+				name:     "h1",
+				hasInner: true,
+			},
+			{
+				name:     "h2",
+				hasInner: true,
+			},
+			{
+				name:     "h3",
+				hasInner: true,
+			},
+			{
+				name:     "h4",
+				hasInner: true,
+			},
+			{
+				name:     "h5",
+				hasInner: true,
+			},
+			{
+				name:     "h6",
+				hasInner: true,
+			},
+			{
+				name: "hgroup",
+			},
+			{
+				name: "header",
+			},
+			{
+				name: "footer",
+			},
+			{
+				name: "address",
+			},
+		},
+	},
+	{
+		name: "grouping",
+		elements: []element{
+			{
+				name:     "p",
+				hasInner: true,
+			},
+			{
+				name: "hr",
+			},
+			{
+				name: "pre",
+			},
+			{
+				name: "blockquote",
+			},
+			{
+				name: "ol",
+			},
+			{
+				name: "ul",
+			},
+			{
+				name: "menu",
+			},
+			{
+				name: "li",
+			},
+			{
+				name: "dl",
+			},
+			{
+				name: "dt",
+			},
+			{
+				name: "dd",
+			},
+			{
+				name: "figure",
+			},
+			{
+				name: "figcaption",
+			},
+			{
+				name: "main",
+			},
+			{
+				name:     "div",
 				hasInner: true,
 			},
 		},
 	},
 	{
-		name: "headers",
+		name: "text",
 		elements: []element{
 			{
-				name:     "Header1",
-				tag:      "h1",
-				hasInner: true,
-			},
-			{
-				name:     "Header2",
-				tag:      "h2",
-				hasInner: true,
-			},
-			{
-				name:     "Header3",
-				tag:      "h3",
-				hasInner: true,
-			},
-			{
-				name:     "Header4",
-				tag:      "h4",
-				hasInner: true,
-			},
-			{
-				name:     "Header5",
-				tag:      "h5",
-				hasInner: true,
-			},
-			{
-				name:     "Header6",
-				tag:      "h6",
-				hasInner: true,
-			},
-		},
-	},
-	{
-		name: "hyperlink",
-		elements: []element{
-			{
-				name:     "hyperlink",
-				tag:      "a",
+				name:     "a",
 				hasInner: true,
 				attributes: []attribute{
 					{
@@ -93,20 +177,255 @@ var categories = []category{
 					},
 				},
 			},
+			{
+				name: "em",
+			},
+			{
+				name: "strong",
+			},
+			{
+				name: "small",
+			},
+			{
+				name: "s",
+			},
+			{
+				name: "cite",
+			},
+			{
+				name: "q",
+			},
+			{
+				name: "dfn",
+			},
+			{
+				name: "abbr",
+			},
+			{
+				name: "ruby",
+			},
+			{
+				name: "rt",
+			},
+			{
+				name: "rp",
+			},
+			{
+				name: "data",
+			},
+			{
+				name: "time",
+			},
+			{
+				name: "code",
+			},
+			{
+				name: "var",
+			},
+			{
+				name: "samp",
+			},
+			{
+				name: "kbd",
+			},
+			{
+				name: "sub",
+			},
+			{
+				name: "sup",
+			},
+			{
+				name: "i",
+			},
+			{
+				name: "b",
+			},
+			{
+				name: "u",
+			},
+			{
+				name: "mark",
+			},
+			{
+				name: "bdi",
+			},
+			{
+				name: "bdo",
+			},
+			{
+				name: "span",
+			},
+			{
+				name: "br",
+			},
+			{
+				name: "wbr",
+			},
 		},
 	},
 	{
-		name: "misc",
+		name: "edit",
 		elements: []element{
 			{
-				name:     "div",
-				tag:      "div",
-				hasInner: false,
+				name: "ins",
 			},
 			{
-				name:     "paragraph",
-				tag:      "p",
+				name: "del",
+			},
+		},
+	},
+	{
+		name: "embedded",
+		elements: []element{
+			{
+				name: "picture",
+			},
+			{
+				name: "source",
+			},
+			{
+				name: "img",
+			},
+			{
+				name: "iframe",
+			},
+			{
+				name: "embed",
+			},
+			{
+				name: "object",
+			},
+			{
+				name: "param",
+			},
+			{
+				name: "video",
+			},
+			{
+				name: "audio",
+			},
+			{
+				name: "track",
+			},
+			{
+				name: "map",
+			},
+			{
+				name: "area",
+			},
+		},
+	},
+	{
+		name: "table",
+		elements: []element{
+			{
+				name: "table",
+			},
+			{
+				name: "caption",
+			},
+			{
+				name: "colgroup",
+			},
+			{
+				name: "col",
+			},
+			{
+				name: "tbody",
+			},
+			{
+				name: "thead",
+			},
+			{
+				name: "tfoot",
+			},
+			{
+				name: "tr",
+			},
+			{
+				name: "td",
+			},
+			{
+				name: "th",
+			},
+		},
+	},
+	{
+		name: "form",
+		elements: []element{
+			{
+				name: "form",
+			},
+			{
+				name: "label",
+			},
+			{
+				name: "input",
+			},
+			{
+				name: "button",
 				hasInner: true,
+			},
+			{
+				name: "select",
+			},
+			{
+				name: "datalist",
+			},
+			{
+				name: "optgroup",
+			},
+			{
+				name: "option",
+			},
+			{
+				name: "textarea",
+			},
+			{
+				name: "output",
+			},
+			{
+				name: "progress",
+			},
+			{
+				name: "meter",
+			},
+			{
+				name: "fieldset",
+			},
+			{
+				name: "legend",
+			},
+		},
+	},
+	{
+		name: "interactive",
+		elements: []element{
+			{
+				name: "details",
+			},
+			{
+				name: "summary",
+			},
+		},
+	},
+	{
+		name: "scripting",
+		elements: []element{
+			{
+				name: "script",
+			},
+			{
+				name: "noscript",
+			},
+			{
+				name: "template",
+			},
+			{
+				name: "slot",
+			},
+			{
+				name: "canvas",
 			},
 		},
 	},
@@ -130,7 +449,7 @@ func generateCategories(subpath string) {
 			}
 
 			dict := jen.Dict{
-				jen.Id("Name"): jen.Lit(element.tag),
+				jen.Id("Name"): jen.Lit(element.name),
 			}
 			var params []jen.Code
 			if element.hasInner {
