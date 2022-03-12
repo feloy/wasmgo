@@ -29,6 +29,7 @@ func (o PageView) Render(document js.Value) js.Value {
 			AddChild(titleLink).
 			AddChild(elements.NewText(")"))).
 		AddChild(elements.NewH2("Title 1.1")).
+		AddChild(elements.NewHr()).
 		AddChild(elements.NewP("some text: bla bla")).
 		AddChild(elements.NewButton("click here").AppendAccesskey("k").AddOnclickHandler(buttonHandler)).
 		AddChild(elements.NewH2("Title 1.2")).

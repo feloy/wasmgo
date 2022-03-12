@@ -8,35 +8,65 @@ func NewPicture() *dom.Tag {
 	return &dom.Tag{Name: "picture"}
 }
 func NewSource() *dom.Tag {
-	return &dom.Tag{Name: "source"}
+	return &dom.Tag{
+		Name:       "source",
+		OmitEndTag: true,
+	}
 }
 func NewImg() *dom.Tag {
-	return &dom.Tag{Name: "img"}
+	return &dom.Tag{
+		Name:       "img",
+		OmitEndTag: true,
+	}
 }
 func NewIframe() *dom.Tag {
 	return &dom.Tag{Name: "iframe"}
 }
 func NewEmbed() *dom.Tag {
-	return &dom.Tag{Name: "embed"}
+	return &dom.Tag{
+		Name:       "embed",
+		OmitEndTag: true,
+	}
 }
-func NewObject() *dom.Tag {
-	return &dom.Tag{Name: "object"}
+func NewObject(inner string) *dom.Tag {
+	return &dom.Tag{
+		InnerHTML: inner,
+		Name:      "object",
+	}
 }
 func NewParam() *dom.Tag {
-	return &dom.Tag{Name: "param"}
+	return &dom.Tag{
+		Name:       "param",
+		OmitEndTag: true,
+	}
 }
-func NewVideo() *dom.Tag {
-	return &dom.Tag{Name: "video"}
+func NewVideo(inner string) *dom.Tag {
+	return &dom.Tag{
+		InnerHTML: inner,
+		Name:      "video",
+	}
 }
-func NewAudio() *dom.Tag {
-	return &dom.Tag{Name: "audio"}
+func NewAudio(inner string) *dom.Tag {
+	return &dom.Tag{
+		InnerHTML: inner,
+		Name:      "audio",
+	}
 }
 func NewTrack() *dom.Tag {
-	return &dom.Tag{Name: "track"}
+	return &dom.Tag{
+		Name:       "track",
+		OmitEndTag: true,
+	}
 }
-func NewMap() *dom.Tag {
-	return &dom.Tag{Name: "map"}
+func NewMap(inner string) *dom.Tag {
+	return &dom.Tag{
+		InnerHTML: inner,
+		Name:      "map",
+	}
 }
 func NewArea() *dom.Tag {
-	return &dom.Tag{Name: "area"}
+	return &dom.Tag{
+		Name:       "area",
+		OmitEndTag: true,
+	}
 }

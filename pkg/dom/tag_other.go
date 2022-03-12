@@ -32,5 +32,7 @@ func (tag *Tag) Render(buffer io.Writer) {
 	for _, child := range tag.Children {
 		child.Render(buffer)
 	}
-	fmt.Fprintf(buffer, "</%s>", tag.Name)
+	if !tag.OmitEndTag {
+		fmt.Fprintf(buffer, "</%s>", tag.Name)
+	}
 }

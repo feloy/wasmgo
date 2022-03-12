@@ -11,13 +11,22 @@ func NewP(inner string) *dom.Tag {
 	}
 }
 func NewHr() *dom.Tag {
-	return &dom.Tag{Name: "hr"}
+	return &dom.Tag{
+		Name:       "hr",
+		OmitEndTag: true,
+	}
 }
-func NewPre() *dom.Tag {
-	return &dom.Tag{Name: "pre"}
+func NewPre(inner string) *dom.Tag {
+	return &dom.Tag{
+		InnerHTML: inner,
+		Name:      "pre",
+	}
 }
-func NewBlockquote() *dom.Tag {
-	return &dom.Tag{Name: "blockquote"}
+func NewBlockquote(inner string) *dom.Tag {
+	return &dom.Tag{
+		InnerHTML: inner,
+		Name:      "blockquote",
+	}
 }
 func NewOl() *dom.Tag {
 	return &dom.Tag{Name: "ol"}
@@ -28,26 +37,44 @@ func NewUl() *dom.Tag {
 func NewMenu() *dom.Tag {
 	return &dom.Tag{Name: "menu"}
 }
-func NewLi() *dom.Tag {
-	return &dom.Tag{Name: "li"}
+func NewLi(inner string) *dom.Tag {
+	return &dom.Tag{
+		InnerHTML: inner,
+		Name:      "li",
+	}
 }
 func NewDl() *dom.Tag {
 	return &dom.Tag{Name: "dl"}
 }
-func NewDt() *dom.Tag {
-	return &dom.Tag{Name: "dt"}
+func NewDt(inner string) *dom.Tag {
+	return &dom.Tag{
+		InnerHTML: inner,
+		Name:      "dt",
+	}
 }
-func NewDd() *dom.Tag {
-	return &dom.Tag{Name: "dd"}
+func NewDd(inner string) *dom.Tag {
+	return &dom.Tag{
+		InnerHTML: inner,
+		Name:      "dd",
+	}
 }
-func NewFigure() *dom.Tag {
-	return &dom.Tag{Name: "figure"}
+func NewFigure(inner string) *dom.Tag {
+	return &dom.Tag{
+		InnerHTML: inner,
+		Name:      "figure",
+	}
 }
-func NewFigcaption() *dom.Tag {
-	return &dom.Tag{Name: "figcaption"}
+func NewFigcaption(inner string) *dom.Tag {
+	return &dom.Tag{
+		InnerHTML: inner,
+		Name:      "figcaption",
+	}
 }
-func NewMain() *dom.Tag {
-	return &dom.Tag{Name: "main"}
+func NewMain(inner string) *dom.Tag {
+	return &dom.Tag{
+		InnerHTML: inner,
+		Name:      "main",
+	}
 }
 func NewDiv(inner string) *dom.Tag {
 	return &dom.Tag{

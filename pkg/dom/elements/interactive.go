@@ -7,6 +7,9 @@ import "github.com/feloy/wasmgo/pkg/dom"
 func NewDetails() *dom.Tag {
 	return &dom.Tag{Name: "details"}
 }
-func NewSummary() *dom.Tag {
-	return &dom.Tag{Name: "summary"}
+func NewSummary(inner string) *dom.Tag {
+	return &dom.Tag{
+		InnerHTML: inner,
+		Name:      "summary",
+	}
 }

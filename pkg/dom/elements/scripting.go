@@ -4,18 +4,33 @@ package elements
 
 import "github.com/feloy/wasmgo/pkg/dom"
 
-func NewScript() *dom.Tag {
-	return &dom.Tag{Name: "script"}
+func NewScript(inner string) *dom.Tag {
+	return &dom.Tag{
+		InnerHTML: inner,
+		Name:      "script",
+	}
 }
-func NewNoscript() *dom.Tag {
-	return &dom.Tag{Name: "noscript"}
+func NewNoscript(inner string) *dom.Tag {
+	return &dom.Tag{
+		InnerHTML: inner,
+		Name:      "noscript",
+	}
 }
-func NewTemplate() *dom.Tag {
-	return &dom.Tag{Name: "template"}
+func NewTemplate(inner string) *dom.Tag {
+	return &dom.Tag{
+		InnerHTML: inner,
+		Name:      "template",
+	}
 }
-func NewSlot() *dom.Tag {
-	return &dom.Tag{Name: "slot"}
+func NewSlot(inner string) *dom.Tag {
+	return &dom.Tag{
+		InnerHTML: inner,
+		Name:      "slot",
+	}
 }
-func NewCanvas() *dom.Tag {
-	return &dom.Tag{Name: "canvas"}
+func NewCanvas(inner string) *dom.Tag {
+	return &dom.Tag{
+		InnerHTML: inner,
+		Name:      "canvas",
+	}
 }

@@ -11,6 +11,7 @@ type Tag struct {
 	SSLAttributes  map[string][]string
 	Children       []Element
 	Handlers       map[string][]EventHandler
+	OmitEndTag     bool
 }
 
 func (o *Tag) appendAttribute(key, value string) {

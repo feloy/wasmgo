@@ -17,6 +17,7 @@ type category struct {
 type element struct {
 	name       string
 	hasInner   bool
+	noEndTag   bool
 	attributes []attribute
 }
 
@@ -33,22 +34,31 @@ var categories = []category{
 		name: "metadata",
 		elements: []element{
 			{
-				name: "head",
+				name:     "head",
+				hasInner: false,
 			},
 			{
-				name: "title",
+				name:     "title",
+				hasInner: true,
 			},
 			{
-				name: "base",
+				name:     "base",
+				hasInner: false,
+				noEndTag: true,
 			},
 			{
-				name: "link",
+				name:     "link",
+				hasInner: false,
+				noEndTag: true,
 			},
 			{
-				name: "meta",
+				name:     "meta",
+				hasInner: false,
+				noEndTag: true,
 			},
 			{
-				name: "style",
+				name:     "style",
+				hasInner: true,
 			},
 		},
 	},
@@ -56,19 +66,24 @@ var categories = []category{
 		name: "section",
 		elements: []element{
 			{
-				name: "body",
+				name:     "body",
+				hasInner: true,
 			},
 			{
-				name: "article",
+				name:     "article",
+				hasInner: true,
 			},
 			{
-				name: "section",
+				name:     "section",
+				hasInner: true,
 			},
 			{
-				name: "nav",
+				name:     "nav",
+				hasInner: true,
 			},
 			{
-				name: "aside",
+				name:     "aside",
+				hasInner: true,
 			},
 			{
 				name:     "h1",
@@ -95,16 +110,20 @@ var categories = []category{
 				hasInner: true,
 			},
 			{
-				name: "hgroup",
+				name:     "hgroup",
+				hasInner: true,
 			},
 			{
-				name: "header",
+				name:     "header",
+				hasInner: true,
 			},
 			{
-				name: "footer",
+				name:     "footer",
+				hasInner: true,
 			},
 			{
-				name: "address",
+				name:     "address",
+				hasInner: true,
 			},
 		},
 	},
@@ -116,43 +135,57 @@ var categories = []category{
 				hasInner: true,
 			},
 			{
-				name: "hr",
+				name:     "hr",
+				hasInner: false,
+				noEndTag: true,
 			},
 			{
-				name: "pre",
+				name:     "pre",
+				hasInner: true,
 			},
 			{
-				name: "blockquote",
+				name:     "blockquote",
+				hasInner: true,
 			},
 			{
-				name: "ol",
+				name:     "ol",
+				hasInner: false,
 			},
 			{
-				name: "ul",
+				name:     "ul",
+				hasInner: false,
 			},
 			{
-				name: "menu",
+				name:     "menu",
+				hasInner: false,
 			},
 			{
-				name: "li",
+				name:     "li",
+				hasInner: true,
 			},
 			{
-				name: "dl",
+				name:     "dl",
+				hasInner: false,
 			},
 			{
-				name: "dt",
+				name:     "dt",
+				hasInner: true,
 			},
 			{
-				name: "dd",
+				name:     "dd",
+				hasInner: true,
 			},
 			{
-				name: "figure",
+				name:     "figure",
+				hasInner: true,
 			},
 			{
-				name: "figcaption",
+				name:     "figcaption",
+				hasInner: true,
 			},
 			{
-				name: "main",
+				name:     "main",
+				hasInner: true,
 			},
 			{
 				name:     "div",
@@ -180,88 +213,118 @@ var categories = []category{
 				},
 			},
 			{
-				name: "em",
+				name:     "em",
+				hasInner: true,
 			},
 			{
-				name: "strong",
+				name:     "strong",
+				hasInner: true,
 			},
 			{
-				name: "small",
+				name:     "small",
+				hasInner: true,
 			},
 			{
-				name: "s",
+				name:     "s",
+				hasInner: true,
 			},
 			{
-				name: "cite",
+				name:     "cite",
+				hasInner: true,
 			},
 			{
-				name: "q",
+				name:     "q",
+				hasInner: true,
 			},
 			{
-				name: "dfn",
+				name:     "dfn",
+				hasInner: true,
 			},
 			{
-				name: "abbr",
+				name:     "abbr",
+				hasInner: true,
 			},
 			{
-				name: "ruby",
+				name:     "ruby",
+				hasInner: true,
 			},
 			{
-				name: "rt",
+				name:     "rt",
+				hasInner: true,
 			},
 			{
-				name: "rp",
+				name:     "rp",
+				hasInner: true,
 			},
 			{
-				name: "data",
+				name:     "data",
+				hasInner: true,
 			},
 			{
-				name: "time",
+				name:     "time",
+				hasInner: true,
 			},
 			{
-				name: "code",
+				name:     "code",
+				hasInner: true,
 			},
 			{
-				name: "var",
+				name:     "var",
+				hasInner: true,
 			},
 			{
-				name: "samp",
+				name:     "samp",
+				hasInner: true,
 			},
 			{
-				name: "kbd",
+				name:     "kbd",
+				hasInner: true,
 			},
 			{
-				name: "sub",
+				name:     "sub",
+				hasInner: true,
 			},
 			{
-				name: "sup",
+				name:     "sup",
+				hasInner: true,
 			},
 			{
-				name: "i",
+				name:     "i",
+				hasInner: true,
 			},
 			{
-				name: "b",
+				name:     "b",
+				hasInner: true,
 			},
 			{
-				name: "u",
+				name:     "u",
+				hasInner: true,
 			},
 			{
-				name: "mark",
+				name:     "mark",
+				hasInner: true,
 			},
 			{
-				name: "bdi",
+				name:     "bdi",
+				hasInner: true,
 			},
 			{
-				name: "bdo",
+				name:     "bdo",
+				hasInner: true,
 			},
 			{
-				name: "span",
+				name:     "span",
+				hasInner: true,
 			},
 			{
-				name: "br",
+				name:     "br",
+				hasInner: false,
+				noEndTag: true,
 			},
 			{
-				name: "wbr",
+				name:     "wbr",
+				hasInner: false,
+				noEndTag: true,
 			},
 		},
 	},
@@ -269,10 +332,12 @@ var categories = []category{
 		name: "edit",
 		elements: []element{
 			{
-				name: "ins",
+				name:     "ins",
+				hasInner: true,
 			},
 			{
-				name: "del",
+				name:     "del",
+				hasInner: true,
 			},
 		},
 	},
@@ -280,40 +345,58 @@ var categories = []category{
 		name: "embedded",
 		elements: []element{
 			{
-				name: "picture",
+				name:     "picture",
+				hasInner: false,
 			},
 			{
-				name: "source",
+				name:     "source",
+				hasInner: false,
+				noEndTag: true,
 			},
 			{
-				name: "img",
+				name:     "img",
+				hasInner: false,
+				noEndTag: true,
 			},
 			{
-				name: "iframe",
+				name:     "iframe",
+				hasInner: false,
 			},
 			{
-				name: "embed",
+				name:     "embed",
+				hasInner: false,
+				noEndTag: true,
 			},
 			{
-				name: "object",
+				name:     "object",
+				hasInner: true,
 			},
 			{
-				name: "param",
+				name:     "param",
+				hasInner: false,
+				noEndTag: true,
 			},
 			{
-				name: "video",
+				name:     "video",
+				hasInner: true,
 			},
 			{
-				name: "audio",
+				name:     "audio",
+				hasInner: true,
 			},
 			{
-				name: "track",
+				name:     "track",
+				hasInner: false,
+				noEndTag: true,
 			},
 			{
-				name: "map",
+				name:     "map",
+				hasInner: true,
 			},
 			{
-				name: "area",
+				name:     "area",
+				hasInner: false,
+				noEndTag: true,
 			},
 		},
 	},
@@ -321,34 +404,45 @@ var categories = []category{
 		name: "table",
 		elements: []element{
 			{
-				name: "table",
+				name:     "table",
+				hasInner: false,
 			},
 			{
-				name: "caption",
+				name:     "caption",
+				hasInner: true,
 			},
 			{
-				name: "colgroup",
+				name:     "colgroup",
+				hasInner: false,
 			},
 			{
-				name: "col",
+				name:     "col",
+				hasInner: false,
+				noEndTag: true,
 			},
 			{
-				name: "tbody",
+				name:     "tbody",
+				hasInner: false,
 			},
 			{
-				name: "thead",
+				name:     "thead",
+				hasInner: false,
 			},
 			{
-				name: "tfoot",
+				name:     "tfoot",
+				hasInner: false,
 			},
 			{
-				name: "tr",
+				name:     "tr",
+				hasInner: false,
 			},
 			{
-				name: "td",
+				name:     "td",
+				hasInner: true,
 			},
 			{
-				name: "th",
+				name:     "th",
+				hasInner: true,
 			},
 		},
 	},
@@ -356,47 +450,61 @@ var categories = []category{
 		name: "form",
 		elements: []element{
 			{
-				name: "form",
+				name:     "form",
+				hasInner: true,
 			},
 			{
-				name: "label",
+				name:     "label",
+				hasInner: true,
 			},
 			{
-				name: "input",
+				name:     "input",
+				hasInner: false,
+				noEndTag: true,
 			},
 			{
 				name:     "button",
 				hasInner: true,
 			},
 			{
-				name: "select",
+				name:     "select",
+				hasInner: false,
 			},
 			{
-				name: "datalist",
+				name:     "datalist",
+				hasInner: true,
 			},
 			{
-				name: "optgroup",
+				name:     "optgroup",
+				hasInner: false,
 			},
 			{
-				name: "option",
+				name:     "option",
+				hasInner: true,
 			},
 			{
-				name: "textarea",
+				name:     "textarea",
+				hasInner: true,
 			},
 			{
-				name: "output",
+				name:     "output",
+				hasInner: true,
 			},
 			{
-				name: "progress",
+				name:     "progress",
+				hasInner: true,
 			},
 			{
-				name: "meter",
+				name:     "meter",
+				hasInner: true,
 			},
 			{
-				name: "fieldset",
+				name:     "fieldset",
+				hasInner: true,
 			},
 			{
-				name: "legend",
+				name:     "legend",
+				hasInner: true,
 			},
 		},
 	},
@@ -404,10 +512,12 @@ var categories = []category{
 		name: "interactive",
 		elements: []element{
 			{
-				name: "details",
+				name:     "details",
+				hasInner: false,
 			},
 			{
-				name: "summary",
+				name:     "summary",
+				hasInner: true,
 			},
 		},
 	},
@@ -415,19 +525,24 @@ var categories = []category{
 		name: "scripting",
 		elements: []element{
 			{
-				name: "script",
+				name:     "script",
+				hasInner: true,
 			},
 			{
-				name: "noscript",
+				name:     "noscript",
+				hasInner: true,
 			},
 			{
-				name: "template",
+				name:     "template",
+				hasInner: true,
 			},
 			{
-				name: "slot",
+				name:     "slot",
+				hasInner: true,
 			},
 			{
-				name: "canvas",
+				name:     "canvas",
+				hasInner: true,
 			},
 		},
 	},
@@ -466,6 +581,10 @@ func generateCategories(subpath string) {
 					attrDict[jen.Lit(attribute.key)] = jen.Id("options").Dot(strings.Title(attribute.name))
 				}
 				dict[jen.Id("Attributes")] = jen.Map(jen.String()).String().Values(attrDict)
+			}
+
+			if element.noEndTag {
+				dict[jen.Id("OmitEndTag")] = jen.Id("true")
 			}
 
 			f.Func().Id("New"+strings.Title(element.name)).Params(params...).

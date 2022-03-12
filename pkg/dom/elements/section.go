@@ -4,20 +4,35 @@ package elements
 
 import "github.com/feloy/wasmgo/pkg/dom"
 
-func NewBody() *dom.Tag {
-	return &dom.Tag{Name: "body"}
+func NewBody(inner string) *dom.Tag {
+	return &dom.Tag{
+		InnerHTML: inner,
+		Name:      "body",
+	}
 }
-func NewArticle() *dom.Tag {
-	return &dom.Tag{Name: "article"}
+func NewArticle(inner string) *dom.Tag {
+	return &dom.Tag{
+		InnerHTML: inner,
+		Name:      "article",
+	}
 }
-func NewSection() *dom.Tag {
-	return &dom.Tag{Name: "section"}
+func NewSection(inner string) *dom.Tag {
+	return &dom.Tag{
+		InnerHTML: inner,
+		Name:      "section",
+	}
 }
-func NewNav() *dom.Tag {
-	return &dom.Tag{Name: "nav"}
+func NewNav(inner string) *dom.Tag {
+	return &dom.Tag{
+		InnerHTML: inner,
+		Name:      "nav",
+	}
 }
-func NewAside() *dom.Tag {
-	return &dom.Tag{Name: "aside"}
+func NewAside(inner string) *dom.Tag {
+	return &dom.Tag{
+		InnerHTML: inner,
+		Name:      "aside",
+	}
 }
 func NewH1(inner string) *dom.Tag {
 	return &dom.Tag{
@@ -55,15 +70,27 @@ func NewH6(inner string) *dom.Tag {
 		Name:      "h6",
 	}
 }
-func NewHgroup() *dom.Tag {
-	return &dom.Tag{Name: "hgroup"}
+func NewHgroup(inner string) *dom.Tag {
+	return &dom.Tag{
+		InnerHTML: inner,
+		Name:      "hgroup",
+	}
 }
-func NewHeader() *dom.Tag {
-	return &dom.Tag{Name: "header"}
+func NewHeader(inner string) *dom.Tag {
+	return &dom.Tag{
+		InnerHTML: inner,
+		Name:      "header",
+	}
 }
-func NewFooter() *dom.Tag {
-	return &dom.Tag{Name: "footer"}
+func NewFooter(inner string) *dom.Tag {
+	return &dom.Tag{
+		InnerHTML: inner,
+		Name:      "footer",
+	}
 }
-func NewAddress() *dom.Tag {
-	return &dom.Tag{Name: "address"}
+func NewAddress(inner string) *dom.Tag {
+	return &dom.Tag{
+		InnerHTML: inner,
+		Name:      "address",
+	}
 }

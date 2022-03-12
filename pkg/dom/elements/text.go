@@ -19,87 +19,171 @@ func NewA(inner string, options AOptions) *dom.Tag {
 		Name:      "a",
 	}
 }
-func NewEm() *dom.Tag {
-	return &dom.Tag{Name: "em"}
+func NewEm(inner string) *dom.Tag {
+	return &dom.Tag{
+		InnerHTML: inner,
+		Name:      "em",
+	}
 }
-func NewStrong() *dom.Tag {
-	return &dom.Tag{Name: "strong"}
+func NewStrong(inner string) *dom.Tag {
+	return &dom.Tag{
+		InnerHTML: inner,
+		Name:      "strong",
+	}
 }
-func NewSmall() *dom.Tag {
-	return &dom.Tag{Name: "small"}
+func NewSmall(inner string) *dom.Tag {
+	return &dom.Tag{
+		InnerHTML: inner,
+		Name:      "small",
+	}
 }
-func NewS() *dom.Tag {
-	return &dom.Tag{Name: "s"}
+func NewS(inner string) *dom.Tag {
+	return &dom.Tag{
+		InnerHTML: inner,
+		Name:      "s",
+	}
 }
-func NewCite() *dom.Tag {
-	return &dom.Tag{Name: "cite"}
+func NewCite(inner string) *dom.Tag {
+	return &dom.Tag{
+		InnerHTML: inner,
+		Name:      "cite",
+	}
 }
-func NewQ() *dom.Tag {
-	return &dom.Tag{Name: "q"}
+func NewQ(inner string) *dom.Tag {
+	return &dom.Tag{
+		InnerHTML: inner,
+		Name:      "q",
+	}
 }
-func NewDfn() *dom.Tag {
-	return &dom.Tag{Name: "dfn"}
+func NewDfn(inner string) *dom.Tag {
+	return &dom.Tag{
+		InnerHTML: inner,
+		Name:      "dfn",
+	}
 }
-func NewAbbr() *dom.Tag {
-	return &dom.Tag{Name: "abbr"}
+func NewAbbr(inner string) *dom.Tag {
+	return &dom.Tag{
+		InnerHTML: inner,
+		Name:      "abbr",
+	}
 }
-func NewRuby() *dom.Tag {
-	return &dom.Tag{Name: "ruby"}
+func NewRuby(inner string) *dom.Tag {
+	return &dom.Tag{
+		InnerHTML: inner,
+		Name:      "ruby",
+	}
 }
-func NewRt() *dom.Tag {
-	return &dom.Tag{Name: "rt"}
+func NewRt(inner string) *dom.Tag {
+	return &dom.Tag{
+		InnerHTML: inner,
+		Name:      "rt",
+	}
 }
-func NewRp() *dom.Tag {
-	return &dom.Tag{Name: "rp"}
+func NewRp(inner string) *dom.Tag {
+	return &dom.Tag{
+		InnerHTML: inner,
+		Name:      "rp",
+	}
 }
-func NewData() *dom.Tag {
-	return &dom.Tag{Name: "data"}
+func NewData(inner string) *dom.Tag {
+	return &dom.Tag{
+		InnerHTML: inner,
+		Name:      "data",
+	}
 }
-func NewTime() *dom.Tag {
-	return &dom.Tag{Name: "time"}
+func NewTime(inner string) *dom.Tag {
+	return &dom.Tag{
+		InnerHTML: inner,
+		Name:      "time",
+	}
 }
-func NewCode() *dom.Tag {
-	return &dom.Tag{Name: "code"}
+func NewCode(inner string) *dom.Tag {
+	return &dom.Tag{
+		InnerHTML: inner,
+		Name:      "code",
+	}
 }
-func NewVar() *dom.Tag {
-	return &dom.Tag{Name: "var"}
+func NewVar(inner string) *dom.Tag {
+	return &dom.Tag{
+		InnerHTML: inner,
+		Name:      "var",
+	}
 }
-func NewSamp() *dom.Tag {
-	return &dom.Tag{Name: "samp"}
+func NewSamp(inner string) *dom.Tag {
+	return &dom.Tag{
+		InnerHTML: inner,
+		Name:      "samp",
+	}
 }
-func NewKbd() *dom.Tag {
-	return &dom.Tag{Name: "kbd"}
+func NewKbd(inner string) *dom.Tag {
+	return &dom.Tag{
+		InnerHTML: inner,
+		Name:      "kbd",
+	}
 }
-func NewSub() *dom.Tag {
-	return &dom.Tag{Name: "sub"}
+func NewSub(inner string) *dom.Tag {
+	return &dom.Tag{
+		InnerHTML: inner,
+		Name:      "sub",
+	}
 }
-func NewSup() *dom.Tag {
-	return &dom.Tag{Name: "sup"}
+func NewSup(inner string) *dom.Tag {
+	return &dom.Tag{
+		InnerHTML: inner,
+		Name:      "sup",
+	}
 }
-func NewI() *dom.Tag {
-	return &dom.Tag{Name: "i"}
+func NewI(inner string) *dom.Tag {
+	return &dom.Tag{
+		InnerHTML: inner,
+		Name:      "i",
+	}
 }
-func NewB() *dom.Tag {
-	return &dom.Tag{Name: "b"}
+func NewB(inner string) *dom.Tag {
+	return &dom.Tag{
+		InnerHTML: inner,
+		Name:      "b",
+	}
 }
-func NewU() *dom.Tag {
-	return &dom.Tag{Name: "u"}
+func NewU(inner string) *dom.Tag {
+	return &dom.Tag{
+		InnerHTML: inner,
+		Name:      "u",
+	}
 }
-func NewMark() *dom.Tag {
-	return &dom.Tag{Name: "mark"}
+func NewMark(inner string) *dom.Tag {
+	return &dom.Tag{
+		InnerHTML: inner,
+		Name:      "mark",
+	}
 }
-func NewBdi() *dom.Tag {
-	return &dom.Tag{Name: "bdi"}
+func NewBdi(inner string) *dom.Tag {
+	return &dom.Tag{
+		InnerHTML: inner,
+		Name:      "bdi",
+	}
 }
-func NewBdo() *dom.Tag {
-	return &dom.Tag{Name: "bdo"}
+func NewBdo(inner string) *dom.Tag {
+	return &dom.Tag{
+		InnerHTML: inner,
+		Name:      "bdo",
+	}
 }
-func NewSpan() *dom.Tag {
-	return &dom.Tag{Name: "span"}
+func NewSpan(inner string) *dom.Tag {
+	return &dom.Tag{
+		InnerHTML: inner,
+		Name:      "span",
+	}
 }
 func NewBr() *dom.Tag {
-	return &dom.Tag{Name: "br"}
+	return &dom.Tag{
+		Name:       "br",
+		OmitEndTag: true,
+	}
 }
 func NewWbr() *dom.Tag {
-	return &dom.Tag{Name: "wbr"}
+	return &dom.Tag{
+		Name:       "wbr",
+		OmitEndTag: true,
+	}
 }

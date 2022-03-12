@@ -23,6 +23,7 @@ func (o PageView) Render(buffer io.Writer) {
 			AddChild(titleLink).
 			AddChild(elements.NewText(")"))).
 		AddChild(elements.NewH2("Title 1.1").WithAutofocus(false).WithTabindex(0)).
+		AddChild(elements.NewHr()).
 		AddChild(elements.NewP("some text: bla bla").WithTabindex(1)).
 		AddChild(elements.NewH2("Title 1.2")).
 		AddChild(elements.NewP("").

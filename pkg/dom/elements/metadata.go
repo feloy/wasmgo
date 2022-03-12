@@ -7,18 +7,33 @@ import "github.com/feloy/wasmgo/pkg/dom"
 func NewHead() *dom.Tag {
 	return &dom.Tag{Name: "head"}
 }
-func NewTitle() *dom.Tag {
-	return &dom.Tag{Name: "title"}
+func NewTitle(inner string) *dom.Tag {
+	return &dom.Tag{
+		InnerHTML: inner,
+		Name:      "title",
+	}
 }
 func NewBase() *dom.Tag {
-	return &dom.Tag{Name: "base"}
+	return &dom.Tag{
+		Name:       "base",
+		OmitEndTag: true,
+	}
 }
 func NewLink() *dom.Tag {
-	return &dom.Tag{Name: "link"}
+	return &dom.Tag{
+		Name:       "link",
+		OmitEndTag: true,
+	}
 }
 func NewMeta() *dom.Tag {
-	return &dom.Tag{Name: "meta"}
+	return &dom.Tag{
+		Name:       "meta",
+		OmitEndTag: true,
+	}
 }
-func NewStyle() *dom.Tag {
-	return &dom.Tag{Name: "style"}
+func NewStyle(inner string) *dom.Tag {
+	return &dom.Tag{
+		InnerHTML: inner,
+		Name:      "style",
+	}
 }
