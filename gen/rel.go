@@ -4,6 +4,7 @@ const (
 	REL_LINK = iota
 	REL_A
 	REL_FORM
+	REL_AREA = REL_A
 )
 
 var relAttrs = map[string]map[int]bool{

@@ -16,21 +16,25 @@ func NewCaption(inner string) *dom.Tag {
 }
 
 type ColgroupOptions struct {
-	Span
+	Span int
 }
 
 func NewColgroup(options ColgroupOptions) *dom.Tag {
-	return &dom.Tag{Name: "colgroup"}
+	return &dom.Tag{
+		IntAttributes: map[string]int{"span": options.Span},
+		Name:          "colgroup",
+	}
 }
 
 type ColOptions struct {
-	Span
+	Span int
 }
 
 func NewCol(options ColOptions) *dom.Tag {
 	return &dom.Tag{
-		Name:       "col",
-		OmitEndTag: true,
+		IntAttributes: map[string]int{"span": options.Span},
+		Name:          "col",
+		OmitEndTag:    true,
 	}
 }
 
@@ -51,29 +55,51 @@ func NewTr() *dom.Tag {
 }
 
 type TdOptions struct {
-	Colspan
-	Rowspan
-	Headers
+	Colspan int
+	Rowspan int
+	Headers []string
 }
 
 func NewTd(inner string, options TdOptions) *dom.Tag {
 	return &dom.Tag{
 		InnerHTML: inner,
-		Name:      "td",
+		IntAttributes: map[string]int{
+			"colspan": options.Colspan,
+			"rowspan": options.Rowspan,
+		},
+		Name:          "td",
+		SSLAttributes: map[string][]string{"headers": options.Headers},
 	}
 }
 
+const (
+	Th_Scope_Row      = "row"
+	Th_Scope_Col      = "col"
+	Th_Scope_Rowgroup = "rowgroup"
+	Th_Scope_Colgroup = "colgroup"
+	Th_Scope_Auto     = "auto"
+)
+
 type ThOptions struct {
-	Colspan
-	Rowspan
-	Headers
-	Scope
-	Abbr
+	Colspan int
+	Rowspan int
+	Headers []string
+	Scope   string
+	Abbr    string
 }
 
 func NewTh(inner string, options ThOptions) *dom.Tag {
 	return &dom.Tag{
+		Attributes: map[string]string{
+			"abbr":  options.Abbr,
+			"scope": options.Scope,
+		},
 		InnerHTML: inner,
-		Name:      "th",
+		IntAttributes: map[string]int{
+			"colspan": options.Colspan,
+			"rowspan": options.Rowspan,
+		},
+		Name:          "th",
+		SSLAttributes: map[string][]string{"headers": options.Headers},
 	}
 }

@@ -269,19 +269,10 @@ var categories = []category{
 						typ:  STRING,
 					},
 					{
-						name: "referrerpolicy",
-						key:  "referrerpolicy",
-						typ:  STRING,
-						values: []string{
-							"no-referrer",
-							"no-referrer-when-downgrade",
-							"same-origin",
-							"origin",
-							"strict-origin",
-							"origin-when-cross-origin",
-							"strict-origin-when-cross-origin",
-							"unsafe-url",
-						},
+						name:   "referrerpolicy",
+						key:    "referrerpolicy",
+						typ:    STRING,
+						values: referrerPolicyValues,
 					},
 				},
 			},
@@ -311,6 +302,8 @@ var categories = []category{
 				attributes: []attribute{
 					{
 						name: "cite",
+						key:  "cite",
+						typ:  STRING,
 					},
 				},
 			},
@@ -340,6 +333,8 @@ var categories = []category{
 				attributes: []attribute{
 					{
 						name: "value",
+						key:  "value",
+						typ:  STRING,
 					},
 				},
 			},
@@ -349,6 +344,8 @@ var categories = []category{
 				attributes: []attribute{
 					{
 						name: "datetime",
+						key:  "datetime",
+						typ:  STRING,
 					},
 				},
 			},
@@ -425,9 +422,13 @@ var categories = []category{
 				attributes: []attribute{
 					{
 						name: "cite",
+						key:  "cite",
+						typ:  STRING,
 					},
 					{
 						name: "datetime",
+						key:  "datetime",
+						typ:  STRING,
 					},
 				},
 			},
@@ -437,9 +438,13 @@ var categories = []category{
 				attributes: []attribute{
 					{
 						name: "cite",
+						key:  "cite",
+						typ:  STRING,
 					},
 					{
 						name: "datetime",
+						key:  "datetime",
+						typ:  STRING,
 					},
 				},
 			},
@@ -459,24 +464,38 @@ var categories = []category{
 				attributes: []attribute{
 					{
 						name: "type",
+						key:  "type",
+						typ:  STRING,
 					},
 					{
 						name: "src",
+						key:  "src",
+						typ:  STRING,
 					},
 					{
 						name: "srcset",
+						key:  "srcset",
+						typ:  STRING,
 					},
 					{
 						name: "sizes",
+						key:  "sizes",
+						typ:  STRING,
 					},
 					{
 						name: "media",
+						key:  "media",
+						typ:  STRING,
 					},
 					{
 						name: "width",
+						key:  "width",
+						typ:  INTEGER,
 					},
 					{
 						name: "height",
+						key:  "height",
+						typ:  INTEGER,
 					},
 				},
 			},
@@ -487,39 +506,70 @@ var categories = []category{
 				attributes: []attribute{
 					{
 						name: "alt",
+						key:  "alt",
+						typ:  STRING,
 					},
 					{
 						name: "src",
+						key:  "src",
+						typ:  STRING,
 					},
 					{
 						name: "srcset",
+						key:  "srcset",
+						typ:  STRING,
 					},
 					{
 						name: "sizes",
+						key:  "sizes",
+						typ:  STRING,
 					},
 					{
 						name: "crossorigin",
+						key:  "crossorigin",
+						typ:  STRING,
+						values: []string{
+							"anonymous",
+							"use-credentials",
+						},
 					},
 					{
 						name: "usemap",
+						key:  "usemap",
+						typ:  STRING,
 					},
 					{
 						name: "ismap",
+						key:  "ismap",
+						typ:  BOOL,
 					},
 					{
 						name: "width",
+						key:  "width",
+						typ:  INTEGER,
 					},
 					{
 						name: "height",
+						key:  "height",
+						typ:  INTEGER,
 					},
 					{
-						name: "referrerpolicy",
+						name:   "referrerpolicy",
+						key:    "referrerpolicy",
+						typ:    STRING,
+						values: referrerPolicyValues,
 					},
 					{
-						name: "decoding",
+						name:   "decoding",
+						key:    "decoding",
+						typ:    STRING,
+						values: []string{"sync", "async", "auto"},
 					},
 					{
-						name: "loading",
+						name:   "loading",
+						key:    "loading",
+						typ:    STRING,
+						values: []string{"lazy", "eager"},
 					},
 				},
 			},
@@ -529,33 +579,70 @@ var categories = []category{
 				attributes: []attribute{
 					{
 						name: "src",
+						key:  "src",
+						typ:  STRING,
 					},
 					{
 						name: "srcset",
+						key:  "srcset",
+						typ:  STRING,
 					},
 					{
 						name: "name",
+						key:  "name",
+						typ:  STRING,
 					},
 					{
 						name: "sandbox",
+						key:  "sandbox",
+						typ:  SPACE_SEPARATED_LIST,
+						values: []string{
+							"allow-downloads",
+							"allow-forms",
+							"allow-modals",
+							"allow-orientation-lock",
+							"allow-pointer-lock",
+							"allow-popups",
+							"allow-popups-to-escape-sandbox",
+							"allow-presentation",
+							"allow-same-origin",
+							"allow-scripts",
+							"allow-top-navigation",
+							"allow-top-navigation-by-user-activation",
+							"allow-top-navigation-to-custom-protocols",
+						},
 					},
 					{
 						name: "allow",
+						key:  "allow",
+						typ:  STRING,
 					},
 					{
 						name: "allowfullscreen",
+						key:  "allowfullscreen",
+						typ:  BOOL,
 					},
 					{
 						name: "width",
+						key:  "width",
+						typ:  INTEGER,
 					},
 					{
 						name: "height",
+						key:  "height",
+						typ:  INTEGER,
 					},
 					{
-						name: "referrerpolicy",
+						name:   "referrerpolicy",
+						key:    "referrerpolicy",
+						typ:    STRING,
+						values: referrerPolicyValues,
 					},
 					{
-						name: "loading",
+						name:   "loading",
+						key:    "loading",
+						typ:    STRING,
+						values: []string{"lazy", "eager"},
 					},
 				},
 			},
@@ -566,15 +653,23 @@ var categories = []category{
 				attributes: []attribute{
 					{
 						name: "src",
+						key:  "src",
+						typ:  STRING,
 					},
 					{
 						name: "type",
+						key:  "type",
+						typ:  STRING,
 					},
 					{
 						name: "width",
+						key:  "width",
+						typ:  INTEGER,
 					},
 					{
 						name: "height",
+						key:  "height",
+						typ:  INTEGER,
 					},
 				},
 			},
@@ -584,21 +679,33 @@ var categories = []category{
 				attributes: []attribute{
 					{
 						name: "data",
+						key:  "data",
+						typ:  STRING,
 					},
 					{
 						name: "type",
+						key:  "type",
+						typ:  STRING,
 					},
 					{
 						name: "name",
+						key:  "name",
+						typ:  STRING,
 					},
 					{
 						name: "form",
+						key:  "form",
+						typ:  STRING,
 					},
 					{
 						name: "width",
+						key:  "width",
+						typ:  INTEGER,
 					},
 					{
 						name: "height",
+						key:  "height",
+						typ:  INTEGER,
 					},
 				},
 			},
@@ -609,9 +716,13 @@ var categories = []category{
 				attributes: []attribute{
 					{
 						name: "name",
+						key:  "name",
+						typ:  STRING,
 					},
 					{
 						name: "value",
+						key:  "value",
+						typ:  STRING,
 					},
 				},
 			},
@@ -621,36 +732,67 @@ var categories = []category{
 				attributes: []attribute{
 					{
 						name: "src",
+						key:  "src",
+						typ:  STRING,
 					},
 					{
 						name: "crossorigin",
+						key:  "crossorigin",
+						typ:  STRING,
+						values: []string{
+							"anonymous",
+							"use-credentials",
+						},
 					},
 					{
 						name: "poster",
+						key:  "poster",
+						typ:  STRING,
 					},
 					{
 						name: "preload",
+						key:  "preload",
+						typ:  STRING,
+						values: []string{
+							"none",
+							"metadata",
+							"auto",
+						},
 					},
 					{
 						name: "autoplay",
+						key:  "autoplay",
+						typ:  BOOL,
 					},
 					{
 						name: "playsinline",
+						key:  "playsinline",
+						typ:  BOOL,
 					},
 					{
 						name: "loop",
+						key:  "loop",
+						typ:  BOOL,
 					},
 					{
 						name: "muted",
+						key:  "muted",
+						typ:  BOOL,
 					},
 					{
 						name: "controls",
+						key:  "controls",
+						typ:  BOOL,
 					},
 					{
 						name: "width",
+						key:  "width",
+						typ:  INTEGER,
 					},
 					{
 						name: "height",
+						key:  "height",
+						typ:  INTEGER,
 					},
 				},
 			},
@@ -660,24 +802,47 @@ var categories = []category{
 				attributes: []attribute{
 					{
 						name: "src",
+						key:  "src",
+						typ:  STRING,
 					},
 					{
 						name: "crossorigin",
+						key:  "crossorigin",
+						typ:  STRING,
+						values: []string{
+							"anonymous",
+							"use-credentials",
+						},
 					},
 					{
 						name: "preload",
+						key:  "preload",
+						typ:  STRING,
+						values: []string{
+							"none",
+							"metadata",
+							"auto",
+						},
 					},
 					{
 						name: "autoplay",
+						key:  "autoplay",
+						typ:  BOOL,
 					},
 					{
 						name: "loop",
+						key:  "loop",
+						typ:  BOOL,
 					},
 					{
 						name: "muted",
+						key:  "muted",
+						typ:  BOOL,
 					},
 					{
 						name: "controls",
+						key:  "controls",
+						typ:  BOOL,
 					},
 				},
 			},
@@ -688,18 +853,35 @@ var categories = []category{
 				attributes: []attribute{
 					{
 						name: "kind",
+						key:  "kind",
+						typ:  STRING,
+						values: []string{
+							"subtitles",
+							"captions",
+							"descriptions",
+							"chapters",
+							"metadata",
+						},
 					},
 					{
 						name: "src",
+						key:  "src",
+						typ:  STRING,
 					},
 					{
 						name: "srclang",
+						key:  "srclang",
+						typ:  STRING,
 					},
 					{
 						name: "label",
+						key:  "label",
+						typ:  STRING,
 					},
 					{
 						name: "default",
+						key:  "default",
+						typ:  BOOL,
 					},
 				},
 			},
@@ -709,6 +891,8 @@ var categories = []category{
 				attributes: []attribute{
 					{
 						name: "name",
+						key:  "name",
+						typ:  STRING,
 					},
 				},
 			},
@@ -719,30 +903,56 @@ var categories = []category{
 				attributes: []attribute{
 					{
 						name: "alt",
+						key:  "alt",
+						typ:  STRING,
 					},
 					{
 						name: "coords",
+						key:  "coords",
+						typ:  STRING,
 					},
 					{
 						name: "shape",
+						key:  "shape",
+						typ:  STRING,
+						values: []string{
+							"circle",
+							"default",
+							"poly",
+							"rect",
+						},
 					},
 					{
 						name: "href",
+						key:  "href",
+						typ:  STRING,
 					},
 					{
 						name: "target",
+						key:  "target",
+						typ:  STRING,
 					},
 					{
 						name: "download",
+						key:  "download",
+						typ:  STRING,
 					},
 					{
 						name: "ping",
+						key:  "ping",
+						typ:  STRING,
 					},
 					{
-						name: "rel",
+						name:   "rel",
+						key:    "rel",
+						typ:    SPACE_SEPARATED_LIST,
+						values: relAttributes(REL_AREA),
 					},
 					{
-						name: "referrerpolicy",
+						name:   "referrerpolicy",
+						key:    "referrerpolicy",
+						typ:    STRING,
+						values: referrerPolicyValues,
 					},
 				},
 			},
@@ -765,6 +975,8 @@ var categories = []category{
 				attributes: []attribute{
 					{
 						name: "span",
+						key:  "span",
+						typ:  INTEGER,
 					},
 				},
 			},
@@ -775,6 +987,8 @@ var categories = []category{
 				attributes: []attribute{
 					{
 						name: "span",
+						key:  "span",
+						typ:  INTEGER,
 					},
 				},
 			},
@@ -800,12 +1014,18 @@ var categories = []category{
 				attributes: []attribute{
 					{
 						name: "colspan",
+						key:  "colspan",
+						typ:  INTEGER,
 					},
 					{
 						name: "rowspan",
+						key:  "rowspan",
+						typ:  INTEGER,
 					},
 					{
 						name: "headers",
+						key:  "headers",
+						typ:  SPACE_SEPARATED_LIST,
 					},
 				},
 			},
@@ -815,18 +1035,35 @@ var categories = []category{
 				attributes: []attribute{
 					{
 						name: "colspan",
+						key:  "colspan",
+						typ:  INTEGER,
 					},
 					{
 						name: "rowspan",
+						key:  "rowspan",
+						typ:  INTEGER,
 					},
 					{
 						name: "headers",
+						key:  "headers",
+						typ:  SPACE_SEPARATED_LIST,
 					},
 					{
 						name: "scope",
+						key:  "scope",
+						typ:  STRING,
+						values: []string{
+							"row",
+							"col",
+							"rowgroup",
+							"colgroup",
+							"auto",
+						},
 					},
 					{
 						name: "abbr",
+						key:  "abbr",
+						typ:  STRING,
 					},
 				},
 			},
@@ -841,30 +1078,60 @@ var categories = []category{
 				attributes: []attribute{
 					{
 						name: "accept-charset",
+						key:  "accept-charset",
+						typ:  STRING,
 					},
 					{
 						name: "action",
+						key:  "action",
+						typ:  STRING,
 					},
 					{
-						name: "autocomplete",
+						name:   "autocomplete",
+						key:    "autocomplete",
+						typ:    STRING,
+						values: []string{"on", "off"},
 					},
 					{
 						name: "enctype",
+						key:  "enctype",
+						typ:  STRING,
+						values: []string{
+							"application/x-www-form-urlencoded",
+							"multipart/form-data",
+							"text/plain",
+						},
 					},
 					{
 						name: "method",
+						key:  "method",
+						typ:  STRING,
+						values: []string{
+							"get",
+							"post",
+							"dialog",
+						},
 					},
 					{
 						name: "name",
+						key:  "name",
+						typ:  STRING,
 					},
 					{
 						name: "novalidate",
+						key:  "novalidate",
+						typ:  BOOL,
 					},
 					{
 						name: "target",
+						key:  "target",
+						typ:  STRING,
 					},
 					{
-						name: "rel",
+						name:   "rel",
+						key:    "rel",
+						typ:    SPACE_SEPARATED_LIST,
+						values: relAttributes(REL_FORM),
 					},
 				},
 			},
@@ -874,6 +1141,8 @@ var categories = []category{
 				attributes: []attribute{
 					{
 						name: "for",
+						key:  "for",
+						typ:  STRING,
 					},
 				},
 			},
@@ -884,93 +1153,187 @@ var categories = []category{
 				attributes: []attribute{
 					{
 						name: "accept",
+						key:  "accept",
+						typ:  STRING, /* comma separated tokens */
 					},
 					{
 						name: "alt",
+						key:  "alt",
+						typ:  STRING,
 					},
 					{
 						name: "autocomplete",
+						key:  "autocomplete",
+						typ:  STRING, /* TODO */
 					},
 					{
 						name: "checked",
+						key:  "checked",
+						typ:  BOOL,
 					},
 					{
 						name: "dirname",
+						key:  "dirname",
+						typ:  STRING,
 					},
 					{
 						name: "disabled",
+						key:  "disabled",
+						typ:  BOOL,
 					},
 					{
 						name: "form",
+						key:  "form",
+						typ:  STRING,
 					},
 					{
 						name: "formaction",
+						key:  "formaction",
+						typ:  STRING,
 					},
 					{
 						name: "formenctype",
+						key:  "formenctype",
+						typ:  STRING,
+						values: []string{
+							"application/x-www-form-urlencoded",
+							"multipart/form-data",
+							"text/plain",
+						},
 					},
 					{
 						name: "formmethod",
+						key:  "formmethod",
+						typ:  STRING,
+						values: []string{
+							"get",
+							"post",
+							"dialog",
+						},
 					},
 					{
 						name: "formnovalidate",
+						key:  "formnovalidate",
+						typ:  BOOL,
 					},
 					{
 						name: "formtarget",
+						key:  "formtarget",
+						typ:  STRING,
 					},
 					{
 						name: "height",
+						key:  "height",
+						typ:  INTEGER,
 					},
 					{
 						name: "list",
+						key:  "list",
+						typ:  STRING,
 					},
 					{
 						name: "max",
+						key:  "max",
+						typ:  INTEGER,
 					},
 					{
 						name: "maxlength",
+						key:  "maxlength",
+						typ:  INTEGER,
 					},
 					{
 						name: "min",
+						key:  "min",
+						typ:  INTEGER,
 					},
 					{
 						name: "minlength",
+						key:  "minlength",
+						typ:  INTEGER,
 					},
 					{
 						name: "multiple",
+						key:  "multiple",
+						typ:  BOOL,
 					},
 					{
 						name: "name",
+						key:  "name",
+						typ:  STRING,
 					},
 					{
 						name: "pattern",
+						key:  "pattern",
+						typ:  STRING,
 					},
 					{
 						name: "placeholder",
+						key:  "placeholder",
+						typ:  STRING,
 					},
 					{
 						name: "readonly",
+						key:  "readonly",
+						typ:  BOOL,
 					},
 					{
 						name: "required",
+						key:  "required",
+						typ:  BOOL,
 					},
 					{
 						name: "size",
+						key:  "size",
+						typ:  INTEGER,
 					},
 					{
 						name: "src",
+						key:  "src",
+						typ:  STRING,
 					},
 					{
 						name: "step",
+						key:  "step",
+						typ:  STRING,
 					},
 					{
 						name: "type",
+						key:  "type",
+						typ:  STRING,
+						values: []string{
+							"hidden",
+							"text",
+							"search",
+							"tel",
+							"url",
+							"email",
+							"password",
+							"date",
+							"month",
+							"week",
+							"time",
+							"datetime-local",
+							"number",
+							"range",
+							"color",
+							"checkbox",
+							"radio",
+							"file",
+							"submit",
+							"image",
+							"reset",
+							"button",
+						},
 					},
 					{
 						name: "value",
+						key:  "value",
+						typ:  STRING,
 					},
 					{
 						name: "width",
+						key:  "width",
+						typ:  INTEGER,
 					},
 				},
 			},
@@ -1276,14 +1639,19 @@ var categories = []category{
 }
 
 func toGoId(s string) string {
-	return strings.ReplaceAll(strings.Title(s), "-", "")
+	s = strings.Title(s)
+	s = strings.ReplaceAll(s, "-", "")
+	return s
 }
 
 func toGoValue(s string) string {
 	if len(s) == 1 {
 		return s
 	}
-	return strings.ReplaceAll(strings.Title(s), "-", "")
+	s = strings.Title(s)
+	s = strings.ReplaceAll(s, "/", "")
+	s = strings.ReplaceAll(s, "-", "")
+	return s
 }
 
 func generateCategories(subpath string) {

@@ -5,19 +5,19 @@ package elements
 import "github.com/feloy/wasmgo/pkg/dom"
 
 const (
-	A_Rel_Help       = "help"
-	A_Rel_Opener     = "opener"
 	A_Rel_Author     = "author"
-	A_Rel_Next       = "next"
-	A_Rel_Noopener   = "noopener"
-	A_Rel_Noreferrer = "noreferrer"
-	A_Rel_Prev       = "prev"
-	A_Rel_License    = "license"
-	A_Rel_Search     = "search"
+	A_Rel_Opener     = "opener"
 	A_Rel_Tag        = "tag"
 	A_Rel_Alternate  = "alternate"
-	A_Rel_Bookmark   = "bookmark"
 	A_Rel_External   = "external"
+	A_Rel_Help       = "help"
+	A_Rel_License    = "license"
+	A_Rel_Next       = "next"
+	A_Rel_Noreferrer = "noreferrer"
+	A_Rel_Prev       = "prev"
+	A_Rel_Search     = "search"
+	A_Rel_Noopener   = "noopener"
+	A_Rel_Bookmark   = "bookmark"
 	A_Rel_Nofollow   = "nofollow"
 )
 
@@ -96,13 +96,14 @@ func NewCite(inner string) *dom.Tag {
 }
 
 type QOptions struct {
-	Cite
+	Cite string
 }
 
 func NewQ(inner string, options QOptions) *dom.Tag {
 	return &dom.Tag{
-		InnerHTML: inner,
-		Name:      "q",
+		Attributes: map[string]string{"cite": options.Cite},
+		InnerHTML:  inner,
+		Name:       "q",
 	}
 }
 
@@ -142,24 +143,26 @@ func NewRp(inner string) *dom.Tag {
 }
 
 type DataOptions struct {
-	Value
+	Value string
 }
 
 func NewData(inner string, options DataOptions) *dom.Tag {
 	return &dom.Tag{
-		InnerHTML: inner,
-		Name:      "data",
+		Attributes: map[string]string{"value": options.Value},
+		InnerHTML:  inner,
+		Name:       "data",
 	}
 }
 
 type TimeOptions struct {
-	Datetime
+	Datetime string
 }
 
 func NewTime(inner string, options TimeOptions) *dom.Tag {
 	return &dom.Tag{
-		InnerHTML: inner,
-		Name:      "time",
+		Attributes: map[string]string{"datetime": options.Datetime},
+		InnerHTML:  inner,
+		Name:       "time",
 	}
 }
 
