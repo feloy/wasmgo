@@ -7,40 +7,71 @@ import "github.com/feloy/wasmgo/pkg/dom"
 func NewTable() *dom.Tag {
 	return &dom.Tag{Name: "table"}
 }
+
 func NewCaption(inner string) *dom.Tag {
 	return &dom.Tag{
 		InnerHTML: inner,
 		Name:      "caption",
 	}
 }
-func NewColgroup() *dom.Tag {
+
+type ColgroupOptions struct {
+	Span
+}
+
+func NewColgroup(options ColgroupOptions) *dom.Tag {
 	return &dom.Tag{Name: "colgroup"}
 }
-func NewCol() *dom.Tag {
+
+type ColOptions struct {
+	Span
+}
+
+func NewCol(options ColOptions) *dom.Tag {
 	return &dom.Tag{
 		Name:       "col",
 		OmitEndTag: true,
 	}
 }
+
 func NewTbody() *dom.Tag {
 	return &dom.Tag{Name: "tbody"}
 }
+
 func NewThead() *dom.Tag {
 	return &dom.Tag{Name: "thead"}
 }
+
 func NewTfoot() *dom.Tag {
 	return &dom.Tag{Name: "tfoot"}
 }
+
 func NewTr() *dom.Tag {
 	return &dom.Tag{Name: "tr"}
 }
-func NewTd(inner string) *dom.Tag {
+
+type TdOptions struct {
+	Colspan
+	Rowspan
+	Headers
+}
+
+func NewTd(inner string, options TdOptions) *dom.Tag {
 	return &dom.Tag{
 		InnerHTML: inner,
 		Name:      "td",
 	}
 }
-func NewTh(inner string) *dom.Tag {
+
+type ThOptions struct {
+	Colspan
+	Rowspan
+	Headers
+	Scope
+	Abbr
+}
+
+func NewTh(inner string, options ThOptions) *dom.Tag {
 	return &dom.Tag{
 		InnerHTML: inner,
 		Name:      "th",

@@ -206,9 +206,9 @@ func Test_generateConstants(t *testing.T) {
 			want: `package mypackage
 
 const (
-	AnattrValue1 = "value1"
-	AnattrValue2 = "value2"
-	AnattrValue3 = "value3"
+	Anattr_Value1 = "value1"
+	Anattr_Value2 = "value2"
+	Anattr_Value3 = "value3"
 )
 `,
 		},
@@ -217,7 +217,7 @@ const (
 	for _, tt := range tests {
 		t.Run(tt.name, func(t *testing.T) {
 			f := jen.NewFile("mypackage")
-			generateConstants(f, tt.args.attribute)
+			generateConstants(f, tt.args.attribute, "")
 			b := new(bytes.Buffer)
 			fmt.Fprintf(b, "%#v", f)
 			result := b.String()

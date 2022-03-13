@@ -9,14 +9,6 @@ import (
 	"github.com/dave/jennifer/jen"
 )
 
-const (
-	BOOL                 = "bool"
-	ENUM                 = "enum"
-	INTEGER              = "integer"
-	SPACE_SEPARATED_LIST = "space_separated_list"
-	STRING               = "string"
-)
-
 var commonAttributes = []attribute{
 	{
 		name:     "accesskey",
@@ -28,7 +20,7 @@ var commonAttributes = []attribute{
 		name:     "autocapitalize",
 		property: "autocapitalize",
 		key:      "autocapitalize",
-		typ:      ENUM,
+		typ:      STRING,
 		values: []string{
 			"characters",
 			"none",
@@ -54,7 +46,7 @@ var commonAttributes = []attribute{
 		name:     "contenteditable",
 		property: "contentEditable",
 		key:      "contenteditable",
-		typ:      ENUM,
+		typ:      STRING,
 		values: []string{
 			"true",
 			"false",
@@ -64,7 +56,7 @@ var commonAttributes = []attribute{
 		name:     "dir",
 		property: "dir",
 		key:      "dir",
-		typ:      ENUM,
+		typ:      STRING,
 		values: []string{
 			"auto",
 			"ltr",
@@ -75,7 +67,7 @@ var commonAttributes = []attribute{
 		name:     "draggable",
 		property: "draggable",
 		key:      "draggable",
-		typ:      ENUM,
+		typ:      STRING,
 		values: []string{
 			"true",
 			"false",
@@ -85,7 +77,7 @@ var commonAttributes = []attribute{
 		name:     "enterkeyhint",
 		property: "enterKeyHint",
 		key:      "enterkeyhint",
-		typ:      ENUM,
+		typ:      STRING,
 		values: []string{
 			"done",
 			"enter",
@@ -112,7 +104,7 @@ var commonAttributes = []attribute{
 		name:     "inputmode",
 		property: "inputMode",
 		key:      "inputmode",
-		typ:      ENUM,
+		typ:      STRING,
 		values: []string{
 			"decimal",
 			"email",
@@ -176,7 +168,7 @@ var commonAttributes = []attribute{
 		name:     "role",
 		property: "role",
 		key:      "role",
-		typ:      ENUM,
+		typ:      STRING,
 		values: []string{
 			"alert",
 			"alertdialog",
@@ -258,7 +250,7 @@ var commonAttributes = []attribute{
 		name:     "spellcheck",
 		property: "spellcheck",
 		key:      "spellcheck",
-		typ:      ENUM,
+		typ:      STRING,
 		values: []string{
 			"true",
 			"false",
@@ -343,13 +335,13 @@ func generateAttributes(subpath string) {
 	f_other.HeaderComment(GENERATED)
 
 	for _, attribute := range commonAttributes {
+		if len(attribute.values) > 0 {
+			generateConstants(f_const, attribute, "")
+		}
 		if attribute.key == attribute.property {
 			switch attribute.typ {
 			case BOOL:
 				generateBoolAttribute(f, attribute, attribute.key)
-			case ENUM:
-				generateConstants(f_const, attribute)
-				generateStringAttribute(f, attribute, attribute.key)
 			case INTEGER:
 				generateIntAttribute(f, attribute, attribute.key)
 			case SPACE_SEPARATED_LIST:
@@ -362,10 +354,6 @@ func generateAttributes(subpath string) {
 			case BOOL:
 				generateBoolAttribute(f_js, attribute, attribute.property)
 				generateBoolAttribute(f_other, attribute, attribute.key)
-			case ENUM:
-				generateConstants(f_const, attribute)
-				generateStringAttribute(f_js, attribute, attribute.property)
-				generateStringAttribute(f_other, attribute, attribute.key)
 			case INTEGER:
 				generateIntAttribute(f_js, attribute, attribute.property)
 				generateIntAttribute(f_other, attribute, attribute.key)
@@ -438,10 +426,15 @@ func generateStringAttribute(f *jen.File, attribute attribute, key string) {
 	f.Line()
 }
 
-func generateConstants(f *jen.File, attribute attribute) {
+func generateConstants(f *jen.File, attribute attribute, prefix string) {
 	consts := make([]jen.Code, 0, len(attribute.values))
 	for _, value := range attribute.values {
-		cnst := jen.Id(strings.Title(attribute.name) + strings.Title(value)).Op("=").Lit(value)
+		var id string
+		if len(prefix) > 0 {
+			id = toGoId(prefix) + "_"
+		}
+		id += toGoId(attribute.name) + "_" + toGoValue(value)
+		cnst := jen.Id(id).Op("=").Lit(value)
 		consts = append(consts, cnst)
 	}
 	f.Const().Defs(consts...)

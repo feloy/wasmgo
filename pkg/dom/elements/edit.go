@@ -4,13 +4,24 @@ package elements
 
 import "github.com/feloy/wasmgo/pkg/dom"
 
-func NewIns(inner string) *dom.Tag {
+type InsOptions struct {
+	Cite
+	Datetime
+}
+
+func NewIns(inner string, options InsOptions) *dom.Tag {
 	return &dom.Tag{
 		InnerHTML: inner,
 		Name:      "ins",
 	}
 }
-func NewDel(inner string) *dom.Tag {
+
+type DelOptions struct {
+	Cite
+	Datetime
+}
+
+func NewDel(inner string, options DelOptions) *dom.Tag {
 	return &dom.Tag{
 		InnerHTML: inner,
 		Name:      "del",

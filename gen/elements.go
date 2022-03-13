@@ -146,10 +146,35 @@ var categories = []category{
 			{
 				name:     "blockquote",
 				hasInner: true,
+				attributes: []attribute{
+					{
+						name: "cite",
+						key:  "cite",
+						typ:  "string",
+					},
+				},
 			},
 			{
 				name:     "ol",
 				hasInner: false,
+				attributes: []attribute{
+					{
+						name: "reversed",
+						key:  "reversed",
+						typ:  BOOL,
+					},
+					{
+						name: "start",
+						key:  "start",
+						typ:  INTEGER,
+					},
+					{
+						name:   "type",
+						key:    "type",
+						typ:    STRING,
+						values: []string{"1", "a", "A", "i", "I"},
+					},
+				},
 			},
 			{
 				name:     "ul",
@@ -162,6 +187,13 @@ var categories = []category{
 			{
 				name:     "li",
 				hasInner: true,
+				attributes: []attribute{
+					{
+						name: "value",
+						key:  "value",
+						typ:  INTEGER,
+					},
+				},
 			},
 			{
 				name:     "dl",
@@ -201,14 +233,55 @@ var categories = []category{
 				hasInner: true,
 				attributes: []attribute{
 					{
-						name: "destination",
+						name: "href",
 						key:  "href",
-						typ:  "string",
+						typ:  STRING,
 					},
 					{
-						name: "relation",
-						key:  "rel",
-						typ:  "string",
+						name: "target",
+						key:  "target",
+						typ:  STRING,
+					},
+					{
+						name: "download",
+						key:  "download",
+						typ:  STRING,
+					},
+					{
+						name: "ping",
+						key:  "ping",
+						typ:  STRING,
+					},
+					{
+						name:   "rel",
+						key:    "rel",
+						typ:    SPACE_SEPARATED_LIST,
+						values: relAttributes(REL_A),
+					},
+					{
+						name: "hreflang",
+						key:  "hreflang",
+						typ:  STRING, /* TODO: BCP 47 */
+					},
+					{
+						name: "type",
+						key:  "type",
+						typ:  STRING,
+					},
+					{
+						name: "referrerpolicy",
+						key:  "referrerpolicy",
+						typ:  STRING,
+						values: []string{
+							"no-referrer",
+							"no-referrer-when-downgrade",
+							"same-origin",
+							"origin",
+							"strict-origin",
+							"origin-when-cross-origin",
+							"strict-origin-when-cross-origin",
+							"unsafe-url",
+						},
 					},
 				},
 			},
@@ -235,6 +308,11 @@ var categories = []category{
 			{
 				name:     "q",
 				hasInner: true,
+				attributes: []attribute{
+					{
+						name: "cite",
+					},
+				},
 			},
 			{
 				name:     "dfn",
@@ -259,10 +337,20 @@ var categories = []category{
 			{
 				name:     "data",
 				hasInner: true,
+				attributes: []attribute{
+					{
+						name: "value",
+					},
+				},
 			},
 			{
 				name:     "time",
 				hasInner: true,
+				attributes: []attribute{
+					{
+						name: "datetime",
+					},
+				},
 			},
 			{
 				name:     "code",
@@ -334,10 +422,26 @@ var categories = []category{
 			{
 				name:     "ins",
 				hasInner: true,
+				attributes: []attribute{
+					{
+						name: "cite",
+					},
+					{
+						name: "datetime",
+					},
+				},
 			},
 			{
 				name:     "del",
 				hasInner: true,
+				attributes: []attribute{
+					{
+						name: "cite",
+					},
+					{
+						name: "datetime",
+					},
+				},
 			},
 		},
 	},
@@ -352,51 +456,295 @@ var categories = []category{
 				name:     "source",
 				hasInner: false,
 				noEndTag: true,
+				attributes: []attribute{
+					{
+						name: "type",
+					},
+					{
+						name: "src",
+					},
+					{
+						name: "srcset",
+					},
+					{
+						name: "sizes",
+					},
+					{
+						name: "media",
+					},
+					{
+						name: "width",
+					},
+					{
+						name: "height",
+					},
+				},
 			},
 			{
 				name:     "img",
 				hasInner: false,
 				noEndTag: true,
+				attributes: []attribute{
+					{
+						name: "alt",
+					},
+					{
+						name: "src",
+					},
+					{
+						name: "srcset",
+					},
+					{
+						name: "sizes",
+					},
+					{
+						name: "crossorigin",
+					},
+					{
+						name: "usemap",
+					},
+					{
+						name: "ismap",
+					},
+					{
+						name: "width",
+					},
+					{
+						name: "height",
+					},
+					{
+						name: "referrerpolicy",
+					},
+					{
+						name: "decoding",
+					},
+					{
+						name: "loading",
+					},
+				},
 			},
 			{
 				name:     "iframe",
 				hasInner: false,
+				attributes: []attribute{
+					{
+						name: "src",
+					},
+					{
+						name: "srcset",
+					},
+					{
+						name: "name",
+					},
+					{
+						name: "sandbox",
+					},
+					{
+						name: "allow",
+					},
+					{
+						name: "allowfullscreen",
+					},
+					{
+						name: "width",
+					},
+					{
+						name: "height",
+					},
+					{
+						name: "referrerpolicy",
+					},
+					{
+						name: "loading",
+					},
+				},
 			},
 			{
 				name:     "embed",
 				hasInner: false,
 				noEndTag: true,
+				attributes: []attribute{
+					{
+						name: "src",
+					},
+					{
+						name: "type",
+					},
+					{
+						name: "width",
+					},
+					{
+						name: "height",
+					},
+				},
 			},
 			{
 				name:     "object",
 				hasInner: true,
+				attributes: []attribute{
+					{
+						name: "data",
+					},
+					{
+						name: "type",
+					},
+					{
+						name: "name",
+					},
+					{
+						name: "form",
+					},
+					{
+						name: "width",
+					},
+					{
+						name: "height",
+					},
+				},
 			},
 			{
 				name:     "param",
 				hasInner: false,
 				noEndTag: true,
+				attributes: []attribute{
+					{
+						name: "name",
+					},
+					{
+						name: "value",
+					},
+				},
 			},
 			{
 				name:     "video",
 				hasInner: true,
+				attributes: []attribute{
+					{
+						name: "src",
+					},
+					{
+						name: "crossorigin",
+					},
+					{
+						name: "poster",
+					},
+					{
+						name: "preload",
+					},
+					{
+						name: "autoplay",
+					},
+					{
+						name: "playsinline",
+					},
+					{
+						name: "loop",
+					},
+					{
+						name: "muted",
+					},
+					{
+						name: "controls",
+					},
+					{
+						name: "width",
+					},
+					{
+						name: "height",
+					},
+				},
 			},
 			{
 				name:     "audio",
 				hasInner: true,
+				attributes: []attribute{
+					{
+						name: "src",
+					},
+					{
+						name: "crossorigin",
+					},
+					{
+						name: "preload",
+					},
+					{
+						name: "autoplay",
+					},
+					{
+						name: "loop",
+					},
+					{
+						name: "muted",
+					},
+					{
+						name: "controls",
+					},
+				},
 			},
 			{
 				name:     "track",
 				hasInner: false,
 				noEndTag: true,
+				attributes: []attribute{
+					{
+						name: "kind",
+					},
+					{
+						name: "src",
+					},
+					{
+						name: "srclang",
+					},
+					{
+						name: "label",
+					},
+					{
+						name: "default",
+					},
+				},
 			},
 			{
 				name:     "map",
 				hasInner: true,
+				attributes: []attribute{
+					{
+						name: "name",
+					},
+				},
 			},
 			{
 				name:     "area",
 				hasInner: false,
 				noEndTag: true,
+				attributes: []attribute{
+					{
+						name: "alt",
+					},
+					{
+						name: "coords",
+					},
+					{
+						name: "shape",
+					},
+					{
+						name: "href",
+					},
+					{
+						name: "target",
+					},
+					{
+						name: "download",
+					},
+					{
+						name: "ping",
+					},
+					{
+						name: "rel",
+					},
+					{
+						name: "referrerpolicy",
+					},
+				},
 			},
 		},
 	},
@@ -414,11 +762,21 @@ var categories = []category{
 			{
 				name:     "colgroup",
 				hasInner: false,
+				attributes: []attribute{
+					{
+						name: "span",
+					},
+				},
 			},
 			{
 				name:     "col",
 				hasInner: false,
 				noEndTag: true,
+				attributes: []attribute{
+					{
+						name: "span",
+					},
+				},
 			},
 			{
 				name:     "tbody",
@@ -439,10 +797,38 @@ var categories = []category{
 			{
 				name:     "td",
 				hasInner: true,
+				attributes: []attribute{
+					{
+						name: "colspan",
+					},
+					{
+						name: "rowspan",
+					},
+					{
+						name: "headers",
+					},
+				},
 			},
 			{
 				name:     "th",
 				hasInner: true,
+				attributes: []attribute{
+					{
+						name: "colspan",
+					},
+					{
+						name: "rowspan",
+					},
+					{
+						name: "headers",
+					},
+					{
+						name: "scope",
+					},
+					{
+						name: "abbr",
+					},
+				},
 			},
 		},
 	},
@@ -452,23 +838,204 @@ var categories = []category{
 			{
 				name:     "form",
 				hasInner: true,
+				attributes: []attribute{
+					{
+						name: "accept-charset",
+					},
+					{
+						name: "action",
+					},
+					{
+						name: "autocomplete",
+					},
+					{
+						name: "enctype",
+					},
+					{
+						name: "method",
+					},
+					{
+						name: "name",
+					},
+					{
+						name: "novalidate",
+					},
+					{
+						name: "target",
+					},
+					{
+						name: "rel",
+					},
+				},
 			},
 			{
 				name:     "label",
 				hasInner: true,
+				attributes: []attribute{
+					{
+						name: "for",
+					},
+				},
 			},
 			{
 				name:     "input",
 				hasInner: false,
 				noEndTag: true,
+				attributes: []attribute{
+					{
+						name: "accept",
+					},
+					{
+						name: "alt",
+					},
+					{
+						name: "autocomplete",
+					},
+					{
+						name: "checked",
+					},
+					{
+						name: "dirname",
+					},
+					{
+						name: "disabled",
+					},
+					{
+						name: "form",
+					},
+					{
+						name: "formaction",
+					},
+					{
+						name: "formenctype",
+					},
+					{
+						name: "formmethod",
+					},
+					{
+						name: "formnovalidate",
+					},
+					{
+						name: "formtarget",
+					},
+					{
+						name: "height",
+					},
+					{
+						name: "list",
+					},
+					{
+						name: "max",
+					},
+					{
+						name: "maxlength",
+					},
+					{
+						name: "min",
+					},
+					{
+						name: "minlength",
+					},
+					{
+						name: "multiple",
+					},
+					{
+						name: "name",
+					},
+					{
+						name: "pattern",
+					},
+					{
+						name: "placeholder",
+					},
+					{
+						name: "readonly",
+					},
+					{
+						name: "required",
+					},
+					{
+						name: "size",
+					},
+					{
+						name: "src",
+					},
+					{
+						name: "step",
+					},
+					{
+						name: "type",
+					},
+					{
+						name: "value",
+					},
+					{
+						name: "width",
+					},
+				},
 			},
 			{
 				name:     "button",
 				hasInner: true,
+				attributes: []attribute{
+					{
+						name: "disabled",
+					},
+					{
+						name: "form",
+					},
+					{
+						name: "formaction",
+					},
+					{
+						name: "formenctype",
+					},
+					{
+						name: "formmethod",
+					},
+					{
+						name: "formnovalidate",
+					},
+					{
+						name: "formtarget",
+					},
+					{
+						name: "name",
+					},
+					{
+						name: "type",
+					},
+					{
+						name: "value",
+					},
+				},
 			},
 			{
 				name:     "select",
 				hasInner: false,
+				attributes: []attribute{
+					{
+						name: "autocomplete",
+					},
+					{
+						name: "disabled",
+					},
+					{
+						name: "form",
+					},
+					{
+						name: "multiple",
+					},
+					{
+						name: "name",
+					},
+					{
+						name: "required",
+					},
+					{
+						name: "size",
+					},
+				},
 			},
 			{
 				name:     "datalist",
@@ -477,30 +1044,143 @@ var categories = []category{
 			{
 				name:     "optgroup",
 				hasInner: false,
+				attributes: []attribute{
+					{
+						name: "disabled",
+					},
+					{
+						name: "label",
+					},
+				},
 			},
 			{
 				name:     "option",
 				hasInner: true,
+				attributes: []attribute{
+					{
+						name: "disabled",
+					},
+					{
+						name: "label",
+					},
+					{
+						name: "selected",
+					},
+					{
+						name: "value",
+					},
+				},
 			},
 			{
 				name:     "textarea",
 				hasInner: true,
+				attributes: []attribute{
+					{
+						name: "autocomplete",
+					},
+					{
+						name: "cols",
+					},
+					{
+						name: "dirname",
+					},
+					{
+						name: "disabled",
+					},
+					{
+						name: "form",
+					},
+					{
+						name: "maxlength",
+					},
+					{
+						name: "minlength",
+					},
+					{
+						name: "name",
+					},
+					{
+						name: "placeholder",
+					},
+					{
+						name: "readonly",
+					},
+					{
+						name: "required",
+					},
+					{
+						name: "rows",
+					},
+					{
+						name: "wrap",
+					},
+				},
 			},
 			{
 				name:     "output",
 				hasInner: true,
+				attributes: []attribute{
+					{
+						name: "for",
+					},
+					{
+						name: "form",
+					},
+					{
+						name: "name",
+					},
+				},
 			},
 			{
 				name:     "progress",
 				hasInner: true,
+				attributes: []attribute{
+					{
+						name: "value",
+					},
+					{
+						name: "max",
+					},
+				},
 			},
 			{
 				name:     "meter",
 				hasInner: true,
+				attributes: []attribute{
+					{
+						name: "value",
+					},
+					{
+						name: "min",
+					},
+					{
+						name: "max",
+					},
+					{
+						name: "low",
+					},
+					{
+						name: "high",
+					},
+					{
+						name: "optimum",
+					},
+				},
 			},
 			{
 				name:     "fieldset",
 				hasInner: true,
+				attributes: []attribute{
+					{
+						name: "disabled",
+					},
+					{
+						name: "form",
+					},
+					{
+						name: "name",
+					},
+				},
 			},
 			{
 				name:     "legend",
@@ -514,6 +1194,11 @@ var categories = []category{
 			{
 				name:     "details",
 				hasInner: false,
+				attributes: []attribute{
+					{
+						name: "open",
+					},
+				},
 			},
 			{
 				name:     "summary",
@@ -527,6 +1212,35 @@ var categories = []category{
 			{
 				name:     "script",
 				hasInner: true,
+				attributes: []attribute{
+					{
+						name: "src",
+					},
+					{
+						name: "type",
+					},
+					{
+						name: "nomodule",
+					},
+					{
+						name: "async",
+					},
+					{
+						name: "defer",
+					},
+					{
+						name: "crossorigin",
+					},
+					{
+						name: "integrity",
+					},
+					{
+						name: "referrerpolicy",
+					},
+					{
+						name: "blocking",
+					},
+				},
 			},
 			{
 				name:     "noscript",
@@ -539,13 +1253,37 @@ var categories = []category{
 			{
 				name:     "slot",
 				hasInner: true,
+				attributes: []attribute{
+					{
+						name: "name",
+					},
+				},
 			},
 			{
 				name:     "canvas",
 				hasInner: true,
+				attributes: []attribute{
+					{
+						name: "width",
+					},
+					{
+						name: "height",
+					},
+				},
 			},
 		},
 	},
+}
+
+func toGoId(s string) string {
+	return strings.ReplaceAll(strings.Title(s), "-", "")
+}
+
+func toGoValue(s string) string {
+	if len(s) == 1 {
+		return s
+	}
+	return strings.ReplaceAll(strings.Title(s), "-", "")
 }
 
 func generateCategories(subpath string) {
@@ -557,45 +1295,96 @@ func generateCategories(subpath string) {
 
 		for _, element := range category.elements {
 
-			if len(element.attributes) > 0 {
-				fields := make([]jen.Code, 0, len(element.attributes))
-				for _, attribute := range element.attributes {
-					field := jen.Id(strings.Title(attribute.name)).Id(attribute.typ)
-					fields = append(fields, field)
-				}
-				f.Type().Id(strings.Title(element.name) + "Options").Struct(fields...)
-			}
-
-			dict := jen.Dict{
-				jen.Id("Name"): jen.Lit(element.name),
-			}
-			var params []jen.Code
-			if element.hasInner {
-				params = append(params, jen.Id("inner").String())
-				dict[jen.Id("InnerHTML")] = jen.Id("inner")
-			}
-			if len(element.attributes) > 0 {
-				params = append(params, jen.Id("options").Id(strings.Title(element.name)+"Options"))
-				attrDict := jen.Dict{}
-				for _, attribute := range element.attributes {
-					attrDict[jen.Lit(attribute.key)] = jen.Id("options").Dot(strings.Title(attribute.name))
-				}
-				dict[jen.Id("Attributes")] = jen.Map(jen.String()).String().Values(attrDict)
-			}
-
-			if element.noEndTag {
-				dict[jen.Id("OmitEndTag")] = jen.Id("true")
-			}
-
-			f.Func().Id("New"+strings.Title(element.name)).Params(params...).
-				Op("*").Qual("github.com/feloy/wasmgo/pkg/dom", "Tag").
-				Block(
-					jen.Return(jen.Add(jen.Op("&")).Qual("github.com/feloy/wasmgo/pkg/dom", "Tag")).
-						Values(dict))
+			generateElement(f, element)
 		}
 		err := f.Save(filename)
 		if err != nil {
 			panic(err)
 		}
 	}
+}
+
+func generateElement(f *jen.File, element element) {
+
+	for _, attribute := range element.attributes {
+		if len(attribute.values) > 0 {
+			generateConstants(f, attribute, element.name)
+		}
+	}
+
+	if len(element.attributes) > 0 {
+		fields := make([]jen.Code, 0, len(element.attributes))
+		for _, attribute := range element.attributes {
+			field := jen.Id(toGoId(attribute.name)).Id(attribute.typ)
+			fields = append(fields, field)
+		}
+		f.Type().Id(strings.Title(element.name) + "Options").Struct(fields...)
+	}
+
+	dict := jen.Dict{
+		jen.Id("Name"): jen.Lit(element.name),
+	}
+	var params []jen.Code
+	if element.hasInner {
+		params = append(params, jen.Id("inner").String())
+		dict[jen.Id("InnerHTML")] = jen.Id("inner")
+	}
+	if len(element.attributes) > 0 {
+		params = append(params, jen.Id("options").Id(strings.Title(element.name)+"Options"))
+
+		stringAttrDict := jen.Dict{}
+		for _, attribute := range element.attributes {
+			if attribute.typ != STRING {
+				continue
+			}
+			stringAttrDict[jen.Lit(attribute.key)] = jen.Id("options").Dot(strings.Title(attribute.name))
+		}
+		if len(stringAttrDict) > 0 {
+			dict[jen.Id("Attributes")] = jen.Map(jen.String()).String().Values(stringAttrDict)
+		}
+
+		sslAttrDict := jen.Dict{}
+		for _, attribute := range element.attributes {
+			if attribute.typ != SPACE_SEPARATED_LIST {
+				continue
+			}
+			sslAttrDict[jen.Lit(attribute.key)] = jen.Id("options").Dot(strings.Title(attribute.name))
+		}
+		if len(sslAttrDict) > 0 {
+			dict[jen.Id("SSLAttributes")] = jen.Map(jen.String()).Index().String().Values(sslAttrDict)
+		}
+
+		boolAttrDict := jen.Dict{}
+		for _, attribute := range element.attributes {
+			if attribute.typ != BOOL {
+				continue
+			}
+			boolAttrDict[jen.Lit(attribute.key)] = jen.Id("options").Dot(strings.Title(attribute.name))
+		}
+		if len(boolAttrDict) > 0 {
+			dict[jen.Id("BoolAttributes")] = jen.Map(jen.String()).Bool().Values(boolAttrDict)
+		}
+
+		intAttrDict := jen.Dict{}
+		for _, attribute := range element.attributes {
+			if attribute.typ != INTEGER {
+				continue
+			}
+			intAttrDict[jen.Lit(attribute.key)] = jen.Id("options").Dot(strings.Title(attribute.name))
+		}
+		if len(intAttrDict) > 0 {
+			dict[jen.Id("IntAttributes")] = jen.Map(jen.String()).Int().Values(intAttrDict)
+		}
+	}
+
+	if element.noEndTag {
+		dict[jen.Id("OmitEndTag")] = jen.Id("true")
+	}
+
+	f.Func().Id("New"+strings.Title(element.name)).Params(params...).
+		Op("*").Qual("github.com/feloy/wasmgo/pkg/dom", "Tag").
+		Block(
+			jen.Return(jen.Add(jen.Op("&")).Qual("github.com/feloy/wasmgo/pkg/dom", "Tag")).
+				Values(dict))
+	f.Line()
 }

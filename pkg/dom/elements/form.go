@@ -4,78 +4,217 @@ package elements
 
 import "github.com/feloy/wasmgo/pkg/dom"
 
-func NewForm(inner string) *dom.Tag {
+type FormOptions struct {
+	AcceptCharset
+	Action
+	Autocomplete
+	Enctype
+	Method
+	Name
+	Novalidate
+	Target
+	Rel
+}
+
+func NewForm(inner string, options FormOptions) *dom.Tag {
 	return &dom.Tag{
 		InnerHTML: inner,
 		Name:      "form",
 	}
 }
-func NewLabel(inner string) *dom.Tag {
+
+type LabelOptions struct {
+	For
+}
+
+func NewLabel(inner string, options LabelOptions) *dom.Tag {
 	return &dom.Tag{
 		InnerHTML: inner,
 		Name:      "label",
 	}
 }
-func NewInput() *dom.Tag {
+
+type InputOptions struct {
+	Accept
+	Alt
+	Autocomplete
+	Checked
+	Dirname
+	Disabled
+	Form
+	Formaction
+	Formenctype
+	Formmethod
+	Formnovalidate
+	Formtarget
+	Height
+	List
+	Max
+	Maxlength
+	Min
+	Minlength
+	Multiple
+	Name
+	Pattern
+	Placeholder
+	Readonly
+	Required
+	Size
+	Src
+	Step
+	Type
+	Value
+	Width
+}
+
+func NewInput(options InputOptions) *dom.Tag {
 	return &dom.Tag{
 		Name:       "input",
 		OmitEndTag: true,
 	}
 }
-func NewButton(inner string) *dom.Tag {
+
+type ButtonOptions struct {
+	Disabled
+	Form
+	Formaction
+	Formenctype
+	Formmethod
+	Formnovalidate
+	Formtarget
+	Name
+	Type
+	Value
+}
+
+func NewButton(inner string, options ButtonOptions) *dom.Tag {
 	return &dom.Tag{
 		InnerHTML: inner,
 		Name:      "button",
 	}
 }
-func NewSelect() *dom.Tag {
+
+type SelectOptions struct {
+	Autocomplete
+	Disabled
+	Form
+	Multiple
+	Name
+	Required
+	Size
+}
+
+func NewSelect(options SelectOptions) *dom.Tag {
 	return &dom.Tag{Name: "select"}
 }
+
 func NewDatalist(inner string) *dom.Tag {
 	return &dom.Tag{
 		InnerHTML: inner,
 		Name:      "datalist",
 	}
 }
-func NewOptgroup() *dom.Tag {
+
+type OptgroupOptions struct {
+	Disabled
+	Label
+}
+
+func NewOptgroup(options OptgroupOptions) *dom.Tag {
 	return &dom.Tag{Name: "optgroup"}
 }
-func NewOption(inner string) *dom.Tag {
+
+type OptionOptions struct {
+	Disabled
+	Label
+	Selected
+	Value
+}
+
+func NewOption(inner string, options OptionOptions) *dom.Tag {
 	return &dom.Tag{
 		InnerHTML: inner,
 		Name:      "option",
 	}
 }
-func NewTextarea(inner string) *dom.Tag {
+
+type TextareaOptions struct {
+	Autocomplete
+	Cols
+	Dirname
+	Disabled
+	Form
+	Maxlength
+	Minlength
+	Name
+	Placeholder
+	Readonly
+	Required
+	Rows
+	Wrap
+}
+
+func NewTextarea(inner string, options TextareaOptions) *dom.Tag {
 	return &dom.Tag{
 		InnerHTML: inner,
 		Name:      "textarea",
 	}
 }
-func NewOutput(inner string) *dom.Tag {
+
+type OutputOptions struct {
+	For
+	Form
+	Name
+}
+
+func NewOutput(inner string, options OutputOptions) *dom.Tag {
 	return &dom.Tag{
 		InnerHTML: inner,
 		Name:      "output",
 	}
 }
-func NewProgress(inner string) *dom.Tag {
+
+type ProgressOptions struct {
+	Value
+	Max
+}
+
+func NewProgress(inner string, options ProgressOptions) *dom.Tag {
 	return &dom.Tag{
 		InnerHTML: inner,
 		Name:      "progress",
 	}
 }
-func NewMeter(inner string) *dom.Tag {
+
+type MeterOptions struct {
+	Value
+	Min
+	Max
+	Low
+	High
+	Optimum
+}
+
+func NewMeter(inner string, options MeterOptions) *dom.Tag {
 	return &dom.Tag{
 		InnerHTML: inner,
 		Name:      "meter",
 	}
 }
-func NewFieldset(inner string) *dom.Tag {
+
+type FieldsetOptions struct {
+	Disabled
+	Form
+	Name
+}
+
+func NewFieldset(inner string, options FieldsetOptions) *dom.Tag {
 	return &dom.Tag{
 		InnerHTML: inner,
 		Name:      "fieldset",
 	}
 }
+
 func NewLegend(inner string) *dom.Tag {
 	return &dom.Tag{
 		InnerHTML: inner,

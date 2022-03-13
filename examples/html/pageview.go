@@ -6,7 +6,6 @@ import (
 	"io"
 
 	"github.com/feloy/wasmgo/pkg/dom"
-	"github.com/feloy/wasmgo/pkg/dom/attributes"
 	"github.com/feloy/wasmgo/pkg/dom/elements"
 )
 
@@ -28,7 +27,7 @@ func (o PageView) Render(buffer io.Writer) {
 		AddChild(elements.NewH2("Title 1.2")).
 		AddChild(elements.NewP("").
 			AddChild(elements.NewA("Web Assembly", elements.AOptions{
-				Destination: "https://webassembly.org/",
-				Relation:    attributes.RelationExternal,
+				Href: "https://webassembly.org/",
+				Rel:  []string{elements.A_Rel_External},
 			}))).Render(buffer)
 }

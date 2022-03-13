@@ -15,6 +15,6 @@ var _ dom.Element = (*LinkView)(nil)
 
 func (o LinkView) Render(buffer io.Writer) {
 	elements.NewA("link", elements.AOptions{
-		Destination: "https://webassembly.org/",
+		Href: "https://webassembly.org/",
 	}).WithId("hyperlink1").Render(buffer)
 }

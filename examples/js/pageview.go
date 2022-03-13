@@ -7,7 +7,6 @@ import (
 	"syscall/js"
 
 	"github.com/feloy/wasmgo/pkg/dom"
-	"github.com/feloy/wasmgo/pkg/dom/attributes"
 	"github.com/feloy/wasmgo/pkg/dom/elements"
 )
 
@@ -35,7 +34,7 @@ func (o PageView) Render(document js.Value) js.Value {
 		AddChild(elements.NewH2("Title 1.2")).
 		AddChild(elements.NewP("").
 			AddChild(elements.NewA("Web Assembly", elements.AOptions{
-				Destination: "https://webassembly.org/",
-				Relation:    attributes.RelationExternal,
+				Href: "https://webassembly.org/",
+				Rel:  []string{element.A_Rel_External},
 			}))).Render(document)
 }

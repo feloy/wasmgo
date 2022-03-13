@@ -2,7 +2,13 @@
 
 package main
 
-import "testing"
+import (
+	"bytes"
+	"fmt"
+	"testing"
+
+	"github.com/dave/jennifer/jen"
+)
 
 func TestDoubleElements(t *testing.T) {
 	elements := map[string]string{}
@@ -13,5 +19,268 @@ func TestDoubleElements(t *testing.T) {
 			}
 			elements[element.name] = category.name
 		}
+	}
+}
+
+func Test_generateElement(t *testing.T) {
+	type args struct {
+		element element
+	}
+	tests := []struct {
+		name string
+		args args
+		want string
+	}{
+		{
+			name: "an element without innerHTML",
+			args: args{
+				element: element{
+					name:     "aname",
+					hasInner: false,
+				},
+			},
+			want: `func NewAname() *dom.Tag {
+	return &dom.Tag{Name: "aname"}
+}
+`,
+		},
+		{
+			name: "an element with innerHTML",
+			args: args{
+				element: element{
+					name:     "aname",
+					hasInner: true,
+				},
+			},
+			want: `func NewAname(inner string) *dom.Tag {
+	return &dom.Tag{
+		InnerHTML: inner,
+		Name:      "aname",
+	}
+}
+`,
+		},
+		{
+			name: "an element with no end tag",
+			args: args{
+				element: element{
+					name:     "aname",
+					hasInner: false,
+					noEndTag: true,
+				},
+			},
+			want: `func NewAname() *dom.Tag {
+	return &dom.Tag{
+		Name:       "aname",
+		OmitEndTag: true,
+	}
+}
+`,
+		},
+		{
+			name: "an element with string attributes",
+			args: args{
+				element: element{
+					name:     "aname",
+					hasInner: false,
+					attributes: []attribute{
+						{
+							name: "anattrname",
+							key:  "anattrkey",
+							typ:  STRING,
+						},
+						{
+							name: "anotherattrname",
+							key:  "anotherattrkey",
+							typ:  STRING,
+						},
+					},
+				},
+			},
+			want: `type AnameOptions struct {
+	Anattrname      string
+	Anotherattrname string
+}
+
+func NewAname(options AnameOptions) *dom.Tag {
+	return &dom.Tag{
+		Attributes: map[string]string{
+			"anattrkey":      options.Anattrname,
+			"anotherattrkey": options.Anotherattrname,
+		},
+		Name: "aname",
+	}
+}
+`,
+		},
+		{
+			name: "an element with SSL attributes",
+			args: args{
+				element: element{
+					name:     "aname",
+					hasInner: false,
+					attributes: []attribute{
+						{
+							name: "anattrname",
+							key:  "anattrkey",
+							typ:  SPACE_SEPARATED_LIST,
+						},
+						{
+							name: "anotherattrname",
+							key:  "anotherattrkey",
+							typ:  SPACE_SEPARATED_LIST,
+						},
+					},
+				},
+			},
+			want: `type AnameOptions struct {
+	Anattrname      []string
+	Anotherattrname []string
+}
+
+func NewAname(options AnameOptions) *dom.Tag {
+	return &dom.Tag{
+		Name: "aname",
+		SSLAttributes: map[string][]string{
+			"anattrkey":      options.Anattrname,
+			"anotherattrkey": options.Anotherattrname,
+		},
+	}
+}
+`,
+		},
+		{
+			name: "an element with bool attributes",
+			args: args{
+				element: element{
+					name:     "aname",
+					hasInner: false,
+					attributes: []attribute{
+						{
+							name: "anattrname",
+							key:  "anattrkey",
+							typ:  BOOL,
+						},
+						{
+							name: "anotherattrname",
+							key:  "anotherattrkey",
+							typ:  BOOL,
+						},
+					},
+				},
+			},
+			want: `type AnameOptions struct {
+	Anattrname      bool
+	Anotherattrname bool
+}
+
+func NewAname(options AnameOptions) *dom.Tag {
+	return &dom.Tag{
+		BoolAttributes: map[string]bool{
+			"anattrkey":      options.Anattrname,
+			"anotherattrkey": options.Anotherattrname,
+		},
+		Name: "aname",
+	}
+}
+`,
+		},
+		{
+			name: "an element with int attributes",
+			args: args{
+				element: element{
+					name:     "aname",
+					hasInner: false,
+					attributes: []attribute{
+						{
+							name: "anattrname",
+							key:  "anattrkey",
+							typ:  INTEGER,
+						},
+						{
+							name: "anotherattrname",
+							key:  "anotherattrkey",
+							typ:  INTEGER,
+						},
+					},
+				},
+			},
+			want: `type AnameOptions struct {
+	Anattrname      int
+	Anotherattrname int
+}
+
+func NewAname(options AnameOptions) *dom.Tag {
+	return &dom.Tag{
+		IntAttributes: map[string]int{
+			"anattrkey":      options.Anattrname,
+			"anotherattrkey": options.Anotherattrname,
+		},
+		Name: "aname",
+	}
+}
+`,
+		},
+		{
+			name: "an element with string attribute with values",
+			args: args{
+				element: element{
+					name:     "aname",
+					hasInner: false,
+					attributes: []attribute{
+						{
+							name:   "anattrname",
+							key:    "anattrkey",
+							typ:    STRING,
+							values: []string{"A", "a"},
+						},
+						{
+							name: "anotherattrname",
+							key:  "anotherattrkey",
+							typ:  STRING,
+						},
+					},
+				},
+			},
+			want: `const (
+	Aname_Anattrname_A = "A"
+	Aname_Anattrname_a = "a"
+)
+
+type AnameOptions struct {
+	Anattrname      string
+	Anotherattrname string
+}
+
+func NewAname(options AnameOptions) *dom.Tag {
+	return &dom.Tag{
+		Attributes: map[string]string{
+			"anattrkey":      options.Anattrname,
+			"anotherattrkey": options.Anotherattrname,
+		},
+		Name: "aname",
+	}
+}
+`,
+		},
+		// TODO: Add test cases.
+	}
+	for _, tt := range tests {
+		t.Run(tt.name, func(t *testing.T) {
+			prefix := `package mypackage
+
+import dom "github.com/feloy/wasmgo/pkg/dom"
+
+`
+			f := jen.NewFile("mypackage")
+			generateElement(f, tt.args.element)
+			b := new(bytes.Buffer)
+			fmt.Fprintf(b, "%#v", f)
+			result := b.String()
+			wanted := prefix + tt.want
+			if result != wanted {
+				t.Errorf("Expected:\n%s\nGot:\n%s\n", wanted, result)
+			}
+		})
 	}
 }
