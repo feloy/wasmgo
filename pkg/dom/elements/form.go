@@ -23,14 +23,14 @@ const (
 
 const (
 	Form_Rel_External   = "external"
-	Form_Rel_Next       = "next"
-	Form_Rel_Opener     = "opener"
 	Form_Rel_Help       = "help"
-	Form_Rel_Noreferrer = "noreferrer"
-	Form_Rel_Noopener   = "noopener"
-	Form_Rel_Prev       = "prev"
 	Form_Rel_License    = "license"
+	Form_Rel_Next       = "next"
 	Form_Rel_Nofollow   = "nofollow"
+	Form_Rel_Noopener   = "noopener"
+	Form_Rel_Noreferrer = "noreferrer"
+	Form_Rel_Opener     = "opener"
+	Form_Rel_Prev       = "prev"
 	Form_Rel_Search     = "search"
 )
 

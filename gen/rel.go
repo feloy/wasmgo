@@ -1,5 +1,7 @@
 package main
 
+import "sort"
+
 const (
 	REL_LINK = iota
 	REL_A
@@ -142,5 +144,6 @@ func relAttributes(typ int) []string {
 			result = append(result, k)
 		}
 	}
+	sort.Strings(result)
 	return result
 }
