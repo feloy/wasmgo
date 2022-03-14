@@ -3,15 +3,16 @@ package dom
 type EventHandler func()
 
 type Tag struct {
-	Name           string
-	InnerHTML      string
-	Attributes     map[string]string
-	BoolAttributes map[string]bool
-	IntAttributes  map[string]int
-	SSLAttributes  map[string][]string
-	Children       []Element
-	Handlers       map[string][]EventHandler
-	OmitEndTag     bool
+	Name            string
+	InnerHTML       string
+	Attributes      map[string]string
+	BoolAttributes  map[string]bool
+	IntAttributes   map[string]int
+	FloatAttributes map[string]float32
+	SSLAttributes   map[string][]string
+	Children        []Element
+	Handlers        map[string][]EventHandler
+	OmitEndTag      bool
 }
 
 func (o *Tag) appendAttribute(key, value string) {

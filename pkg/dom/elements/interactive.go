@@ -5,11 +5,14 @@ package elements
 import "github.com/feloy/wasmgo/pkg/dom"
 
 type DetailsOptions struct {
-	Open
+	Open bool
 }
 
 func NewDetails(options DetailsOptions) *dom.Tag {
-	return &dom.Tag{Name: "details"}
+	return &dom.Tag{
+		BoolAttributes: map[string]bool{"open": options.Open},
+		Name:           "details",
+	}
 }
 
 func NewSummary(inner string) *dom.Tag {

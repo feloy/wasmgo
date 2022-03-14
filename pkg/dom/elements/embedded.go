@@ -368,20 +368,20 @@ const (
 )
 
 const (
-	Area_Rel_Noopener   = "noopener"
-	Area_Rel_Bookmark   = "bookmark"
-	Area_Rel_Nofollow   = "nofollow"
-	Area_Rel_Author     = "author"
-	Area_Rel_Opener     = "opener"
-	Area_Rel_Tag        = "tag"
-	Area_Rel_Prev       = "prev"
-	Area_Rel_Alternate  = "alternate"
-	Area_Rel_External   = "external"
-	Area_Rel_Help       = "help"
-	Area_Rel_License    = "license"
-	Area_Rel_Next       = "next"
 	Area_Rel_Noreferrer = "noreferrer"
+	Area_Rel_Help       = "help"
+	Area_Rel_Noopener   = "noopener"
+	Area_Rel_Prev       = "prev"
+	Area_Rel_Tag        = "tag"
 	Area_Rel_Search     = "search"
+	Area_Rel_Alternate  = "alternate"
+	Area_Rel_Author     = "author"
+	Area_Rel_License    = "license"
+	Area_Rel_Nofollow   = "nofollow"
+	Area_Rel_Bookmark   = "bookmark"
+	Area_Rel_External   = "external"
+	Area_Rel_Next       = "next"
+	Area_Rel_Opener     = "opener"
 )
 
 const (

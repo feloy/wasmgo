@@ -9,6 +9,7 @@ const (
 const (
 	BOOL                 = "bool"
 	INTEGER              = "int"
+	FLOAT                = "float32"
 	SPACE_SEPARATED_LIST = "[]string"
 	STRING               = "string"
 )

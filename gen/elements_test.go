@@ -222,6 +222,42 @@ func NewAname(options AnameOptions) *dom.Tag {
 `,
 		},
 		{
+			name: "an element with float attributes",
+			args: args{
+				element: element{
+					name:     "aname",
+					hasInner: false,
+					attributes: []attribute{
+						{
+							name: "anattrname",
+							key:  "anattrkey",
+							typ:  FLOAT,
+						},
+						{
+							name: "anotherattrname",
+							key:  "anotherattrkey",
+							typ:  FLOAT,
+						},
+					},
+				},
+			},
+			want: `type AnameOptions struct {
+	Anattrname      float32
+	Anotherattrname float32
+}
+
+func NewAname(options AnameOptions) *dom.Tag {
+	return &dom.Tag{
+		FloatAttributes: map[string]float32{
+			"anattrkey":      options.Anattrname,
+			"anotherattrkey": options.Anotherattrname,
+		},
+		Name: "aname",
+	}
+}
+`,
+		},
+		{
 			name: "an element with string attribute with values",
 			args: args{
 				element: element{

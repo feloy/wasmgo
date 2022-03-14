@@ -1343,33 +1343,68 @@ var categories = []category{
 				attributes: []attribute{
 					{
 						name: "disabled",
+						key:  "disabled",
+						typ:  BOOL,
 					},
 					{
 						name: "form",
+						key:  "form",
+						typ:  STRING,
 					},
 					{
 						name: "formaction",
+						key:  "formaction",
+						typ:  STRING,
 					},
 					{
 						name: "formenctype",
+						key:  "formenctype",
+						typ:  STRING,
+						values: []string{
+							"application/x-www-form-urlencoded",
+							"multipart/form-data",
+							"text/plain",
+						},
 					},
 					{
 						name: "formmethod",
+						key:  "formmethod",
+						typ:  STRING,
+						values: []string{
+							"get",
+							"post",
+							"dialog",
+						},
 					},
 					{
 						name: "formnovalidate",
+						key:  "formnovalidate",
+						typ:  BOOL,
 					},
 					{
 						name: "formtarget",
+						key:  "formtarget",
+						typ:  STRING,
 					},
 					{
 						name: "name",
+						key:  "name",
+						typ:  STRING,
 					},
 					{
 						name: "type",
+						key:  "type",
+						typ:  STRING,
 					},
 					{
 						name: "value",
+						key:  "value",
+						typ:  STRING,
+						values: []string{
+							"submit",
+							"reset",
+							"button",
+						},
 					},
 				},
 			},
@@ -1379,24 +1414,38 @@ var categories = []category{
 				attributes: []attribute{
 					{
 						name: "autocomplete",
+						key:  "autocomplete",
+						typ:  STRING, /* TODO */
 					},
 					{
 						name: "disabled",
+						key:  "disabled",
+						typ:  BOOL,
 					},
 					{
 						name: "form",
+						key:  "form",
+						typ:  STRING,
 					},
 					{
 						name: "multiple",
+						key:  "multiple",
+						typ:  BOOL,
 					},
 					{
 						name: "name",
+						key:  "name",
+						typ:  STRING,
 					},
 					{
 						name: "required",
+						key:  "required",
+						typ:  BOOL,
 					},
 					{
 						name: "size",
+						key:  "size",
+						typ:  INTEGER,
 					},
 				},
 			},
@@ -1410,9 +1459,13 @@ var categories = []category{
 				attributes: []attribute{
 					{
 						name: "disabled",
+						key:  "disabled",
+						typ:  BOOL,
 					},
 					{
 						name: "label",
+						key:  "label",
+						typ:  STRING,
 					},
 				},
 			},
@@ -1422,15 +1475,23 @@ var categories = []category{
 				attributes: []attribute{
 					{
 						name: "disabled",
+						key:  "disabled",
+						typ:  BOOL,
 					},
 					{
 						name: "label",
+						key:  "label",
+						typ:  STRING,
 					},
 					{
 						name: "selected",
+						key:  "selected",
+						typ:  BOOL,
 					},
 					{
 						name: "value",
+						key:  "value",
+						typ:  STRING,
 					},
 				},
 			},
@@ -1440,42 +1501,72 @@ var categories = []category{
 				attributes: []attribute{
 					{
 						name: "autocomplete",
+						key:  "autocomplete",
+						typ:  STRING, /* TODO */
 					},
 					{
 						name: "cols",
+						key:  "cols",
+						typ:  INTEGER,
 					},
 					{
 						name: "dirname",
+						key:  "dirname",
+						typ:  STRING,
 					},
 					{
 						name: "disabled",
+						key:  "disabled",
+						typ:  BOOL,
 					},
 					{
 						name: "form",
+						key:  "form",
+						typ:  STRING,
 					},
 					{
 						name: "maxlength",
+						key:  "maxlength",
+						typ:  INTEGER,
 					},
 					{
 						name: "minlength",
+						key:  "minlength",
+						typ:  INTEGER,
 					},
 					{
 						name: "name",
+						key:  "name",
+						typ:  STRING,
 					},
 					{
 						name: "placeholder",
+						key:  "placeholder",
+						typ:  STRING,
 					},
 					{
 						name: "readonly",
+						key:  "readonly",
+						typ:  BOOL,
 					},
 					{
 						name: "required",
+						key:  "required",
+						typ:  BOOL,
 					},
 					{
 						name: "rows",
+						key:  "rows",
+						typ:  INTEGER,
 					},
 					{
 						name: "wrap",
+						key:  "wrap",
+						typ:  STRING,
+						values: []string{
+							"soft",
+							"hard",
+						},
 					},
 				},
 			},
@@ -1485,12 +1576,18 @@ var categories = []category{
 				attributes: []attribute{
 					{
 						name: "for",
+						key:  "for",
+						typ:  SPACE_SEPARATED_LIST,
 					},
 					{
 						name: "form",
+						key:  "form",
+						typ:  STRING,
 					},
 					{
 						name: "name",
+						key:  "name",
+						typ:  STRING,
 					},
 				},
 			},
@@ -1500,9 +1597,13 @@ var categories = []category{
 				attributes: []attribute{
 					{
 						name: "value",
+						key:  "value",
+						typ:  FLOAT,
 					},
 					{
 						name: "max",
+						key:  "max",
+						typ:  FLOAT,
 					},
 				},
 			},
@@ -1512,21 +1613,33 @@ var categories = []category{
 				attributes: []attribute{
 					{
 						name: "value",
+						key:  "value",
+						typ:  FLOAT,
 					},
 					{
 						name: "min",
+						key:  "min",
+						typ:  FLOAT,
 					},
 					{
 						name: "max",
+						key:  "max",
+						typ:  FLOAT,
 					},
 					{
 						name: "low",
+						key:  "low",
+						typ:  FLOAT,
 					},
 					{
 						name: "high",
+						key:  "high",
+						typ:  FLOAT,
 					},
 					{
 						name: "optimum",
+						key:  "optimum",
+						typ:  FLOAT,
 					},
 				},
 			},
@@ -1536,12 +1649,18 @@ var categories = []category{
 				attributes: []attribute{
 					{
 						name: "disabled",
+						key:  "disabled",
+						typ:  BOOL,
 					},
 					{
 						name: "form",
+						key:  "form",
+						typ:  STRING,
 					},
 					{
 						name: "name",
+						key:  "name",
+						typ:  STRING,
 					},
 				},
 			},
@@ -1560,6 +1679,8 @@ var categories = []category{
 				attributes: []attribute{
 					{
 						name: "open",
+						key:  "open",
+						typ:  BOOL,
 					},
 				},
 			},
@@ -1578,30 +1699,53 @@ var categories = []category{
 				attributes: []attribute{
 					{
 						name: "src",
+						key:  "src",
+						typ:  STRING,
 					},
 					{
 						name: "type",
+						key:  "type",
+						typ:  STRING,
 					},
 					{
 						name: "nomodule",
+						key:  "nomodule",
+						typ:  BOOL,
 					},
 					{
 						name: "async",
+						key:  "async",
+						typ:  BOOL,
 					},
 					{
 						name: "defer",
+						key:  "defer",
+						typ:  BOOL,
 					},
 					{
 						name: "crossorigin",
+						key:  "crossorigin",
+						typ:  STRING,
+						values: []string{
+							"anonymous",
+							"use-credentials",
+						},
 					},
 					{
 						name: "integrity",
+						key:  "integrity",
+						typ:  STRING,
 					},
 					{
-						name: "referrerpolicy",
+						name:   "referrerpolicy",
+						key:    "referrerpolicy",
+						typ:    STRING,
+						values: referrerPolicyValues,
 					},
 					{
 						name: "blocking",
+						key:  "blocking",
+						typ:  BOOL,
 					},
 				},
 			},
@@ -1619,6 +1763,8 @@ var categories = []category{
 				attributes: []attribute{
 					{
 						name: "name",
+						key:  "name",
+						typ:  STRING,
 					},
 				},
 			},
@@ -1628,9 +1774,13 @@ var categories = []category{
 				attributes: []attribute{
 					{
 						name: "width",
+						key:  "width",
+						typ:  INTEGER,
 					},
 					{
 						name: "height",
+						key:  "height",
+						typ:  INTEGER,
 					},
 				},
 			},
@@ -1705,7 +1855,7 @@ func generateElement(f *jen.File, element element) {
 			if attribute.typ != STRING {
 				continue
 			}
-			stringAttrDict[jen.Lit(attribute.key)] = jen.Id("options").Dot(strings.Title(attribute.name))
+			stringAttrDict[jen.Lit(attribute.key)] = jen.Id("options").Dot(toGoValue(attribute.name))
 		}
 		if len(stringAttrDict) > 0 {
 			dict[jen.Id("Attributes")] = jen.Map(jen.String()).String().Values(stringAttrDict)
@@ -1742,6 +1892,17 @@ func generateElement(f *jen.File, element element) {
 		}
 		if len(intAttrDict) > 0 {
 			dict[jen.Id("IntAttributes")] = jen.Map(jen.String()).Int().Values(intAttrDict)
+		}
+
+		floatAttrDict := jen.Dict{}
+		for _, attribute := range element.attributes {
+			if attribute.typ != FLOAT {
+				continue
+			}
+			floatAttrDict[jen.Lit(attribute.key)] = jen.Id("options").Dot(strings.Title(attribute.name))
+		}
+		if len(floatAttrDict) > 0 {
+			dict[jen.Id("FloatAttributes")] = jen.Map(jen.String()).Float32().Values(floatAttrDict)
 		}
 	}
 
