@@ -7,313 +7,8 @@ import (
 	"strings"
 
 	"github.com/dave/jennifer/jen"
+	"github.com/feloy/wasmgo/gen/specs"
 )
-
-var commonAttributes = []attribute{
-	{
-		name:     "accesskey",
-		property: "accessKey",
-		key:      "accesskey",
-		typ:      SPACE_SEPARATED_LIST,
-	},
-	{
-		name:     "autocapitalize",
-		property: "autocapitalize",
-		key:      "autocapitalize",
-		typ:      STRING,
-		values: []string{
-			"characters",
-			"none",
-			"off",
-			"on",
-			"sentences",
-			"words",
-		},
-	},
-	{
-		name:     "autofocus",
-		property: "autofocus",
-		key:      "autofocus",
-		typ:      BOOL,
-	},
-	{
-		name:     "class",
-		property: "className",
-		key:      "class",
-		typ:      SPACE_SEPARATED_LIST,
-	},
-	{
-		name:     "contenteditable",
-		property: "contentEditable",
-		key:      "contenteditable",
-		typ:      STRING,
-		values: []string{
-			"true",
-			"false",
-		},
-	},
-	{
-		name:     "dir",
-		property: "dir",
-		key:      "dir",
-		typ:      STRING,
-		values: []string{
-			"auto",
-			"ltr",
-			"rtl",
-		},
-	},
-	{
-		name:     "draggable",
-		property: "draggable",
-		key:      "draggable",
-		typ:      STRING,
-		values: []string{
-			"true",
-			"false",
-		},
-	},
-	{
-		name:     "enterkeyhint",
-		property: "enterKeyHint",
-		key:      "enterkeyhint",
-		typ:      STRING,
-		values: []string{
-			"done",
-			"enter",
-			"go",
-			"next",
-			"previous",
-			"search",
-			"send",
-		},
-	},
-	{
-		name:     "hidden",
-		property: "hidden",
-		key:      "hidden",
-		typ:      BOOL,
-	},
-	{
-		name:     "id",
-		property: "id",
-		key:      "id",
-		typ:      STRING,
-	},
-	{
-		name:     "inputmode",
-		property: "inputMode",
-		key:      "inputmode",
-		typ:      STRING,
-		values: []string{
-			"decimal",
-			"email",
-			"none",
-			"numeric",
-			"search",
-			"tel",
-			"text",
-			"url",
-		},
-	},
-	{
-		name:     "is",
-		property: "is",
-		key:      "is",
-		typ:      STRING,
-	},
-	{
-		name:     "itemid",
-		property: "itemid",
-		key:      "itemid",
-		typ:      STRING,
-	},
-	{
-		name:     "itemprop",
-		property: "itemprop",
-		key:      "itemprop",
-		typ:      SPACE_SEPARATED_LIST,
-	},
-	{
-		name:     "itemref",
-		property: "itemref",
-		key:      "itemref",
-		typ:      SPACE_SEPARATED_LIST,
-	},
-	{
-		name:     "itemscope",
-		property: "itemscope",
-		key:      "itemscope",
-		typ:      BOOL,
-	},
-	{
-		name:     "itemtype",
-		property: "itemtype",
-		key:      "itemtype",
-		typ:      SPACE_SEPARATED_LIST,
-	},
-	{
-		name:     "lang",
-		property: "lang",
-		key:      "lang",
-		typ:      STRING,
-	},
-	{
-		name:     "nonce",
-		property: "nonce",
-		key:      "nonce",
-		typ:      STRING,
-	},
-	{
-		name:     "role",
-		property: "role",
-		key:      "role",
-		typ:      STRING,
-		values: []string{
-			"alert",
-			"alertdialog",
-			"application",
-			"article",
-			"associationlist",
-			"associationlistitemkey",
-			"associationlistitemvalue",
-			"banner",
-			"blockquote",
-			"caption",
-			"cell",
-			"columnheader",
-			"command",
-			"comment",
-			"complementary",
-			"composite",
-			"contentinfo",
-			"definition",
-			"deletion",
-			"dialog",
-			"directory",
-			"document",
-			"emphasis",
-			"feed",
-			"figure",
-			"form",
-			"generic",
-			"gridcell",
-			"group",
-			"heading",
-			"img",
-			"input",
-			"insertion",
-			"label",
-			"legend",
-			"list",
-			"listitem",
-			"log",
-			"main",
-			"mark",
-			"marquee",
-			"math",
-			"meter",
-			"navigation",
-			"none",
-			"note",
-			"paragraph",
-			"presentation",
-			"progressbar",
-			"region",
-			"row",
-			"rowgroup",
-			"rowheader",
-			"scrollbar",
-			"search",
-			"separator",
-			"status",
-			"strong",
-			"subscript",
-			"suggestion",
-			"superscript",
-			"tab",
-			"table",
-			"term",
-			"time",
-			"timer",
-			"toolbar",
-			"tooltip",
-		},
-	},
-	{
-		name:     "slot",
-		property: "slot",
-		key:      "slot",
-		typ:      STRING,
-	},
-	{
-		name:     "spellcheck",
-		property: "spellcheck",
-		key:      "spellcheck",
-		typ:      STRING,
-		values: []string{
-			"true",
-			"false",
-		},
-	},
-	{
-		name:     "style",
-		property: "style",
-		key:      "style",
-		typ:      STRING,
-	},
-	{
-		name:     "title",
-		property: "title",
-		key:      "title",
-		typ:      STRING,
-	},
-	{
-		name:     "tabindex",
-		property: "tabIndex",
-		key:      "tabindex",
-		typ:      INTEGER,
-	},
-	//	{
-	//		name: "translate",
-	//		property: "translate",
-	//		key:  "translate",
-	//		typ:  ENUM,
-	//		values: []string{
-	//			"yes",
-	//			"no",
-	//		},
-	//	},
-}
-
-/*
-// accesskey 			SSL
-// autocapitalize		ENUM
-// autofocus			BOOL
-// class				SSL
-// contenteditable		ENUM(true/false)
-// dir					ENUM(auto/ltr/rtl)
-// draggable			ENUM(true/false)
-// enterkeyhint		ENUM(done,enter,go,next,previous,search,send)
-// hidden				BOOL
-// id					String
-// inputmode			ENUM
-// is					String
-// itemid				String
-// itemprop			SSL
-// itemref				SSL
-// itemscope			BOOL
-// itemtype			SSL
-// lang				ENUM(bcp 47)
-// nonce				String
-// role				ENUM(ARIA role)
-// slot				String
-// spellcheck			ENUM(true/false)
-// style				String
-// tabIndex			Int
-// title				String
-translate			ENUM(yes/no)
-*/
 
 func generateAttributes(subpath string) {
 	filename := filepath.Join(subpath, "common_attributes.go")
@@ -334,35 +29,35 @@ func generateAttributes(subpath string) {
 	f_other.HeaderComment("+build !js")
 	f_other.HeaderComment(GENERATED)
 
-	for _, attribute := range commonAttributes {
-		if len(attribute.values) > 0 {
+	for _, attribute := range specs.CommonAttributes {
+		if len(attribute.Values) > 0 {
 			generateConstants(f_const, attribute, "")
 		}
-		if attribute.key == attribute.property {
-			switch attribute.typ {
-			case BOOL:
-				generateBoolAttribute(f, attribute, attribute.key)
-			case INTEGER:
-				generateIntAttribute(f, attribute, attribute.key)
-			case SPACE_SEPARATED_LIST:
-				generateSpaceSeparatedListAttribute(f, attribute, attribute.key)
-			case STRING:
-				generateStringAttribute(f, attribute, attribute.key)
+		if attribute.Key == attribute.Property {
+			switch attribute.Typ {
+			case specs.BOOL:
+				generateBoolAttribute(f, attribute, attribute.Key)
+			case specs.INTEGER:
+				generateIntAttribute(f, attribute, attribute.Key)
+			case specs.SPACE_SEPARATED_LIST:
+				generateSpaceSeparatedListAttribute(f, attribute, attribute.Key)
+			case specs.STRING:
+				generateStringAttribute(f, attribute, attribute.Key)
 			}
 		} else {
-			switch attribute.typ {
-			case BOOL:
-				generateBoolAttribute(f_js, attribute, attribute.property)
-				generateBoolAttribute(f_other, attribute, attribute.key)
-			case INTEGER:
-				generateIntAttribute(f_js, attribute, attribute.property)
-				generateIntAttribute(f_other, attribute, attribute.key)
-			case SPACE_SEPARATED_LIST:
-				generateSpaceSeparatedListAttribute(f_js, attribute, attribute.property)
-				generateSpaceSeparatedListAttribute(f_other, attribute, attribute.key)
-			case STRING:
-				generateStringAttribute(f_js, attribute, attribute.property)
-				generateStringAttribute(f_other, attribute, attribute.key)
+			switch attribute.Typ {
+			case specs.BOOL:
+				generateBoolAttribute(f_js, attribute, attribute.Property)
+				generateBoolAttribute(f_other, attribute, attribute.Key)
+			case specs.INTEGER:
+				generateIntAttribute(f_js, attribute, attribute.Property)
+				generateIntAttribute(f_other, attribute, attribute.Key)
+			case specs.SPACE_SEPARATED_LIST:
+				generateSpaceSeparatedListAttribute(f_js, attribute, attribute.Property)
+				generateSpaceSeparatedListAttribute(f_other, attribute, attribute.Key)
+			case specs.STRING:
+				generateStringAttribute(f_js, attribute, attribute.Property)
+				generateStringAttribute(f_other, attribute, attribute.Key)
 			}
 		}
 	}
@@ -384,56 +79,56 @@ func generateAttributes(subpath string) {
 	}
 }
 
-func generateBoolAttribute(f *jen.File, attribute attribute, key string) {
+func generateBoolAttribute(f *jen.File, attribute specs.Attribute, key string) {
 	f.Func().
 		Params(jen.Id("o").Op("*").Id("Tag")).
-		Id("With"+strings.Title(attribute.name)).
-		Params(jen.Id(attribute.name).Bool()).
+		Id("With"+strings.Title(attribute.Name)).
+		Params(jen.Id(attribute.Name).Bool()).
 		Op("*").Id("Tag").
 		Block(
-			jen.Id("o").Dot("appendBoolAttribute").Call(jen.Lit(key), jen.Id(attribute.name)),
+			jen.Id("o").Dot("appendBoolAttribute").Call(jen.Lit(key), jen.Id(attribute.Name)),
 			jen.Return(jen.Id("o")),
 		)
 
 	f.Line()
 }
 
-func generateIntAttribute(f *jen.File, attribute attribute, key string) {
+func generateIntAttribute(f *jen.File, attribute specs.Attribute, key string) {
 	f.Func().
 		Params(jen.Id("o").Op("*").Id("Tag")).
-		Id("With"+strings.Title(attribute.name)).
-		Params(jen.Id(attribute.name).Int()).
+		Id("With"+strings.Title(attribute.Name)).
+		Params(jen.Id(attribute.Name).Int()).
 		Op("*").Id("Tag").
 		Block(
-			jen.Id("o").Dot("appendIntAttribute").Call(jen.Lit(key), jen.Id(attribute.name)),
+			jen.Id("o").Dot("appendIntAttribute").Call(jen.Lit(key), jen.Id(attribute.Name)),
 			jen.Return(jen.Id("o")),
 		)
 
 	f.Line()
 }
 
-func generateStringAttribute(f *jen.File, attribute attribute, key string) {
+func generateStringAttribute(f *jen.File, attribute specs.Attribute, key string) {
 	f.Func().
 		Params(jen.Id("o").Op("*").Id("Tag")).
-		Id("With"+strings.Title(attribute.name)).
-		Params(jen.Id(attribute.name).String()).
+		Id("With"+strings.Title(attribute.Name)).
+		Params(jen.Id(attribute.Name).String()).
 		Op("*").Id("Tag").
 		Block(
-			jen.Id("o").Dot("appendAttribute").Call(jen.Lit(key), jen.Id(attribute.name)),
+			jen.Id("o").Dot("appendAttribute").Call(jen.Lit(key), jen.Id(attribute.Name)),
 			jen.Return(jen.Id("o")),
 		)
 
 	f.Line()
 }
 
-func generateConstants(f *jen.File, attribute attribute, prefix string) {
-	consts := make([]jen.Code, 0, len(attribute.values))
-	for _, value := range attribute.values {
+func generateConstants(f *jen.File, attribute specs.Attribute, prefix string) {
+	consts := make([]jen.Code, 0, len(attribute.Values))
+	for _, value := range attribute.Values {
 		var id string
 		if len(prefix) > 0 {
 			id = toGoId(prefix) + "_"
 		}
-		id += toGoId(attribute.name) + "_" + toGoValue(value)
+		id += toGoId(attribute.Name) + "_" + toGoValue(value)
 		cnst := jen.Id(id).Op("=").Lit(value)
 		consts = append(consts, cnst)
 	}
@@ -441,24 +136,24 @@ func generateConstants(f *jen.File, attribute attribute, prefix string) {
 	f.Line()
 }
 
-func generateSpaceSeparatedListAttribute(f *jen.File, attribute attribute, key string) {
+func generateSpaceSeparatedListAttribute(f *jen.File, attribute specs.Attribute, key string) {
 	f.Func().
 		Params(jen.Id("o").Op("*").Id("Tag")).
-		Id("Append"+strings.Title(attribute.name)).
-		Params(jen.Id(attribute.name).String()).
+		Id("Append"+strings.Title(attribute.Name)).
+		Params(jen.Id(attribute.Name).String()).
 		Op("*").Id("Tag").
 		Block(
-			jen.Id("o").Dot("appendSSLAttribute").Call(jen.Lit(key), jen.Id(attribute.name)),
+			jen.Id("o").Dot("appendSSLAttribute").Call(jen.Lit(key), jen.Id(attribute.Name)),
 			jen.Return(jen.Id("o")),
 		)
 
 	f.Func().
 		Params(jen.Id("o").Op("*").Id("Tag")).
-		Id("Prepend"+strings.Title(attribute.name)).
-		Params(jen.Id(attribute.name).String()).
+		Id("Prepend"+strings.Title(attribute.Name)).
+		Params(jen.Id(attribute.Name).String()).
 		Op("*").Id("Tag").
 		Block(
-			jen.Id("o").Dot("prependSSLAttribute").Call(jen.Lit(key), jen.Id(attribute.name)),
+			jen.Id("o").Dot("prependSSLAttribute").Call(jen.Lit(key), jen.Id(attribute.Name)),
 			jen.Return(jen.Id("o")),
 		)
 

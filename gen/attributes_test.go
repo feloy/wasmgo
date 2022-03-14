@@ -8,11 +8,12 @@ import (
 	"testing"
 
 	"github.com/dave/jennifer/jen"
+	"github.com/feloy/wasmgo/gen/specs"
 )
 
 func Test_generateBoolAttribute(t *testing.T) {
 	type args struct {
-		attribute attribute
+		attribute specs.Attribute
 	}
 	tests := []struct {
 		name string
@@ -22,10 +23,10 @@ func Test_generateBoolAttribute(t *testing.T) {
 		{
 			name: "a bool attribute",
 			args: args{
-				attribute: attribute{
-					name: "aname",
-					key:  "akey",
-					typ:  BOOL,
+				attribute: specs.Attribute{
+					Name: "aname",
+					Key:  "akey",
+					Typ:  specs.BOOL,
 				},
 			},
 			want: `package mypackage
@@ -41,7 +42,7 @@ func (o *Tag) WithAname(aname bool) *Tag {
 	for _, tt := range tests {
 		t.Run(tt.name, func(t *testing.T) {
 			f := jen.NewFile("mypackage")
-			generateBoolAttribute(f, tt.args.attribute, tt.args.attribute.key)
+			generateBoolAttribute(f, tt.args.attribute, tt.args.attribute.Key)
 			b := new(bytes.Buffer)
 			fmt.Fprintf(b, "%#v", f)
 			result := b.String()
@@ -54,7 +55,7 @@ func (o *Tag) WithAname(aname bool) *Tag {
 
 func Test_generateIntAttribute(t *testing.T) {
 	type args struct {
-		attribute attribute
+		attribute specs.Attribute
 	}
 	tests := []struct {
 		name string
@@ -64,10 +65,10 @@ func Test_generateIntAttribute(t *testing.T) {
 		{
 			name: "an int attribute",
 			args: args{
-				attribute: attribute{
-					name: "aname",
-					key:  "akey",
-					typ:  INTEGER,
+				attribute: specs.Attribute{
+					Name: "aname",
+					Key:  "akey",
+					Typ:  specs.INTEGER,
 				},
 			},
 			want: `package mypackage
@@ -83,7 +84,7 @@ func (o *Tag) WithAname(aname int) *Tag {
 	for _, tt := range tests {
 		t.Run(tt.name, func(t *testing.T) {
 			f := jen.NewFile("mypackage")
-			generateIntAttribute(f, tt.args.attribute, tt.args.attribute.key)
+			generateIntAttribute(f, tt.args.attribute, tt.args.attribute.Key)
 			b := new(bytes.Buffer)
 			fmt.Fprintf(b, "%#v", f)
 			result := b.String()
@@ -96,7 +97,7 @@ func (o *Tag) WithAname(aname int) *Tag {
 
 func Test_generateStringAttribute(t *testing.T) {
 	type args struct {
-		attribute attribute
+		attribute specs.Attribute
 	}
 	tests := []struct {
 		name string
@@ -106,10 +107,10 @@ func Test_generateStringAttribute(t *testing.T) {
 		{
 			name: "a string attribute",
 			args: args{
-				attribute: attribute{
-					name: "aname",
-					key:  "akey",
-					typ:  STRING,
+				attribute: specs.Attribute{
+					Name: "aname",
+					Key:  "akey",
+					Typ:  specs.STRING,
 				},
 			},
 			want: `package mypackage
@@ -125,7 +126,7 @@ func (o *Tag) WithAname(aname string) *Tag {
 	for _, tt := range tests {
 		t.Run(tt.name, func(t *testing.T) {
 			f := jen.NewFile("mypackage")
-			generateStringAttribute(f, tt.args.attribute, tt.args.attribute.key)
+			generateStringAttribute(f, tt.args.attribute, tt.args.attribute.Key)
 			b := new(bytes.Buffer)
 			fmt.Fprintf(b, "%#v", f)
 			result := b.String()
@@ -138,7 +139,7 @@ func (o *Tag) WithAname(aname string) *Tag {
 
 func Test_generateSpaceSeparatedListAttribute(t *testing.T) {
 	type args struct {
-		attribute attribute
+		attribute specs.Attribute
 	}
 	tests := []struct {
 		name string
@@ -148,10 +149,10 @@ func Test_generateSpaceSeparatedListAttribute(t *testing.T) {
 		{
 			name: "a space separated list attribute",
 			args: args{
-				attribute: attribute{
-					name: "aname",
-					key:  "akey",
-					typ:  SPACE_SEPARATED_LIST,
+				attribute: specs.Attribute{
+					Name: "aname",
+					Key:  "akey",
+					Typ:  specs.SPACE_SEPARATED_LIST,
 				},
 			},
 			want: `package mypackage
@@ -171,7 +172,7 @@ func (o *Tag) PrependAname(aname string) *Tag {
 	for _, tt := range tests {
 		t.Run(tt.name, func(t *testing.T) {
 			f := jen.NewFile("mypackage")
-			generateSpaceSeparatedListAttribute(f, tt.args.attribute, tt.args.attribute.key)
+			generateSpaceSeparatedListAttribute(f, tt.args.attribute, tt.args.attribute.Key)
 			b := new(bytes.Buffer)
 			fmt.Fprintf(b, "%#v", f)
 			result := b.String()
@@ -184,7 +185,7 @@ func (o *Tag) PrependAname(aname string) *Tag {
 
 func Test_generateConstants(t *testing.T) {
 	type args struct {
-		attribute attribute
+		attribute specs.Attribute
 	}
 	tests := []struct {
 		name string
@@ -194,9 +195,9 @@ func Test_generateConstants(t *testing.T) {
 		{
 			name: "constants",
 			args: args{
-				attribute: attribute{
-					name: "anattr",
-					values: []string{
+				attribute: specs.Attribute{
+					Name: "anattr",
+					Values: []string{
 						"value1",
 						"value2",
 						"value3",

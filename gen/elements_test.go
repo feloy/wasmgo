@@ -8,23 +8,24 @@ import (
 	"testing"
 
 	"github.com/dave/jennifer/jen"
+	"github.com/feloy/wasmgo/gen/specs"
 )
 
 func TestDoubleElements(t *testing.T) {
 	elements := map[string]string{}
-	for _, category := range categories {
-		for _, element := range category.elements {
-			if firstCategory, found := elements[element.name]; found {
-				t.Errorf("element %q in category %q already found in category %q", element.name, category.name, firstCategory)
+	for _, category := range specs.Categories {
+		for _, element := range category.Elements {
+			if firstCategory, found := elements[element.Name]; found {
+				t.Errorf("element %q in category %q already found in category %q", element.Name, category.Name, firstCategory)
 			}
-			elements[element.name] = category.name
+			elements[element.Name] = category.Name
 		}
 	}
 }
 
 func Test_generateElement(t *testing.T) {
 	type args struct {
-		element element
+		element specs.Element
 	}
 	tests := []struct {
 		name string
@@ -34,9 +35,9 @@ func Test_generateElement(t *testing.T) {
 		{
 			name: "an element without innerHTML",
 			args: args{
-				element: element{
-					name:     "aname",
-					hasInner: false,
+				element: specs.Element{
+					Name:     "aname",
+					HasInner: false,
 				},
 			},
 			want: `func NewAname() *dom.Tag {
@@ -47,9 +48,9 @@ func Test_generateElement(t *testing.T) {
 		{
 			name: "an element with innerHTML",
 			args: args{
-				element: element{
-					name:     "aname",
-					hasInner: true,
+				element: specs.Element{
+					Name:     "aname",
+					HasInner: true,
 				},
 			},
 			want: `func NewAname(inner string) *dom.Tag {
@@ -63,10 +64,10 @@ func Test_generateElement(t *testing.T) {
 		{
 			name: "an element with no end tag",
 			args: args{
-				element: element{
-					name:     "aname",
-					hasInner: false,
-					noEndTag: true,
+				element: specs.Element{
+					Name:     "aname",
+					HasInner: false,
+					NoEndTag: true,
 				},
 			},
 			want: `func NewAname() *dom.Tag {
@@ -80,19 +81,19 @@ func Test_generateElement(t *testing.T) {
 		{
 			name: "an element with string attributes",
 			args: args{
-				element: element{
-					name:     "aname",
-					hasInner: false,
-					attributes: []attribute{
+				element: specs.Element{
+					Name:     "aname",
+					HasInner: false,
+					Attributes: []specs.Attribute{
 						{
-							name: "anattrname",
-							key:  "anattrkey",
-							typ:  STRING,
+							Name: "anattrname",
+							Key:  "anattrkey",
+							Typ:  specs.STRING,
 						},
 						{
-							name: "anotherattrname",
-							key:  "anotherattrkey",
-							typ:  STRING,
+							Name: "anotherattrname",
+							Key:  "anotherattrkey",
+							Typ:  specs.STRING,
 						},
 					},
 				},
@@ -116,19 +117,19 @@ func NewAname(options AnameOptions) *dom.Tag {
 		{
 			name: "an element with SSL attributes",
 			args: args{
-				element: element{
-					name:     "aname",
-					hasInner: false,
-					attributes: []attribute{
+				element: specs.Element{
+					Name:     "aname",
+					HasInner: false,
+					Attributes: []specs.Attribute{
 						{
-							name: "anattrname",
-							key:  "anattrkey",
-							typ:  SPACE_SEPARATED_LIST,
+							Name: "anattrname",
+							Key:  "anattrkey",
+							Typ:  specs.SPACE_SEPARATED_LIST,
 						},
 						{
-							name: "anotherattrname",
-							key:  "anotherattrkey",
-							typ:  SPACE_SEPARATED_LIST,
+							Name: "anotherattrname",
+							Key:  "anotherattrkey",
+							Typ:  specs.SPACE_SEPARATED_LIST,
 						},
 					},
 				},
@@ -152,19 +153,19 @@ func NewAname(options AnameOptions) *dom.Tag {
 		{
 			name: "an element with bool attributes",
 			args: args{
-				element: element{
-					name:     "aname",
-					hasInner: false,
-					attributes: []attribute{
+				element: specs.Element{
+					Name:     "aname",
+					HasInner: false,
+					Attributes: []specs.Attribute{
 						{
-							name: "anattrname",
-							key:  "anattrkey",
-							typ:  BOOL,
+							Name: "anattrname",
+							Key:  "anattrkey",
+							Typ:  specs.BOOL,
 						},
 						{
-							name: "anotherattrname",
-							key:  "anotherattrkey",
-							typ:  BOOL,
+							Name: "anotherattrname",
+							Key:  "anotherattrkey",
+							Typ:  specs.BOOL,
 						},
 					},
 				},
@@ -188,19 +189,19 @@ func NewAname(options AnameOptions) *dom.Tag {
 		{
 			name: "an element with int attributes",
 			args: args{
-				element: element{
-					name:     "aname",
-					hasInner: false,
-					attributes: []attribute{
+				element: specs.Element{
+					Name:     "aname",
+					HasInner: false,
+					Attributes: []specs.Attribute{
 						{
-							name: "anattrname",
-							key:  "anattrkey",
-							typ:  INTEGER,
+							Name: "anattrname",
+							Key:  "anattrkey",
+							Typ:  specs.INTEGER,
 						},
 						{
-							name: "anotherattrname",
-							key:  "anotherattrkey",
-							typ:  INTEGER,
+							Name: "anotherattrname",
+							Key:  "anotherattrkey",
+							Typ:  specs.INTEGER,
 						},
 					},
 				},
@@ -224,19 +225,19 @@ func NewAname(options AnameOptions) *dom.Tag {
 		{
 			name: "an element with float attributes",
 			args: args{
-				element: element{
-					name:     "aname",
-					hasInner: false,
-					attributes: []attribute{
+				element: specs.Element{
+					Name:     "aname",
+					HasInner: false,
+					Attributes: []specs.Attribute{
 						{
-							name: "anattrname",
-							key:  "anattrkey",
-							typ:  FLOAT,
+							Name: "anattrname",
+							Key:  "anattrkey",
+							Typ:  specs.FLOAT,
 						},
 						{
-							name: "anotherattrname",
-							key:  "anotherattrkey",
-							typ:  FLOAT,
+							Name: "anotherattrname",
+							Key:  "anotherattrkey",
+							Typ:  specs.FLOAT,
 						},
 					},
 				},
@@ -260,20 +261,20 @@ func NewAname(options AnameOptions) *dom.Tag {
 		{
 			name: "an element with string attribute with values",
 			args: args{
-				element: element{
-					name:     "aname",
-					hasInner: false,
-					attributes: []attribute{
+				element: specs.Element{
+					Name:     "aname",
+					HasInner: false,
+					Attributes: []specs.Attribute{
 						{
-							name:   "anattrname",
-							key:    "anattrkey",
-							typ:    STRING,
-							values: []string{"A", "a"},
+							Name:   "anattrname",
+							Key:    "anattrkey",
+							Typ:    specs.STRING,
+							Values: []string{"A", "a"},
 						},
 						{
-							name: "anotherattrname",
-							key:  "anotherattrkey",
-							typ:  STRING,
+							Name: "anotherattrname",
+							Key:  "anotherattrkey",
+							Typ:  specs.STRING,
 						},
 					},
 				},
